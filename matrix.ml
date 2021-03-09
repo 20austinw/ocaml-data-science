@@ -35,4 +35,35 @@ module Matrix = struct
       in
       let columns = (transpose m2).matrix in
       List.map (fun row -> List.map (product row) columns) m1.matrix
+
+  let swap m i j = 
+    let temp = m.(i) in 
+    m.(i) <- m.(j); 
+    m.(j) <- temp;
+
+  (* Seems like rref requires the use of arrays. It would make sense for us to implement
+  matrices using arrays, but lists make the code cleaner and more concise. *)
+  let echelon mat = 
+    let m = Array.of_list (List.map Array.of_list mat.matrix) in 
+    let lead = ref 0 in 
+    let rowCount = Array.length m in 
+    let columnCount = Array.length m.(0) in 
+    try 
+      for r = 0 to (pred rowCount) do 
+        if columnCount <= lead then raise Exit 
+        let i = ref r in 
+        while m.(!i).(!lead) = 0 do 
+          incr i;
+          if rowCount = !i then begin 
+            i := r;
+            incr lead; 
+            if columnCount = !lead then raise Exit 
+          end 
+        done 
+        swap m !i r
+        if m.(r).(!lead) != 0 then m.(r) <- Array.map (fun x -> x / m.(r).(!lead)) m.(r)
+        for i = 0 to pred rowCount do 
+          if i != r do 
+            
+    with Exit -> ()
 end
