@@ -1,0 +1,8 @@
+let mean x = ()
+let median x = ()
+let mode x = ()
+let q1 x = ()
+let q3 x = ()
+let percentile x p = ()
+let std x = ()
+let var x = ()
