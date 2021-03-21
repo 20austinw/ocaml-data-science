@@ -18,14 +18,9 @@ val transpose : t -> t
 (* [mult t1 t2] produces a new matrix of the product of t1 and t2 *)
 val mult : t -> t -> t
 
-<<<<<<< HEAD
   (* [echelon t] returns the reduced form of matrix m*)
   val echelon : t -> t
 
   (* [construct m] takes in a float list list and returns of matrix of type t *)
   val construct : float list list -> t
 end
-=======
-(* [echelon t] returns the reduced form of matrix m*)
-val echelon : t -> t
->>>>>>> cce7ca42c6ce2871c747b1b5b2adad55cb115e0a
