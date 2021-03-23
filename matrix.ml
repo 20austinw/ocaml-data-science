@@ -89,4 +89,28 @@ let construct lst =
     matrix = check lst;
   }
 
-let lu_decomp mat = failwith "Unimplemented"
+let lu_decomp mat =
+  let n = fst mat.dimensions in
+  let m = mat.matrix |> to_array in
+  let l = (empty n n).matrix |> to_array in
+  let u = (empty n n).matrix |> to_array in
+  for i = 0 to pred n do
+    for k = i to pred n do
+      let sum = ref 0.0 in
+      for j = 0 to pred i do
+        sum := !sum +. (l.(i).(j) *. u.(j).(k))
+      done;
+      u.(i).(k) <- m.(i).(k) -. !sum
+    done;
+    for k = i to pred n do
+      if i = k then l.(i).(i) <- 1.0
+      else
+        let sum = ref 0.0 in
+        for j = 0 to pred i do
+          sum := !sum +. (l.(k).(j) *. u.(j).(i));
+          l.(k).(i) <- (m.(k).(i) -. !sum) /. u.(i).(i)
+        done
+    done
+  done;
+  ( { dimensions = (n, n); matrix = l |> to_list },
+    { dimensions = (n, n); matrix = u |> to_list } )

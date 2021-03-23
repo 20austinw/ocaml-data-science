@@ -1,0 +1,50 @@
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Runner: sequential
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Chooser: simple
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration suite_name = "test suite for project"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration cache_filename = "/mnt/c/Users/hw424/Documents/3110/ocaml-data-science-ml/_build/oUnit-$(suite_name).cache"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration run_gc_full_major = "true"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration display = "true"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration results_style_1_X = "false"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration testdata_dir = "none"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration health_check_interval = "1."
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration verbose = "false"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration chooser = "simple"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration output_html_dir = "none"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration processes_kill_period = "5."
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration runner = "sequential"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration shards = "4"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration processes_grace_period = "5."
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration log_encoding = "utf-8"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration output_junit_file = "none"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration ci = "false"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Configuration output_file = "/mnt/c/Users/hw424/Documents/3110/ocaml-data-science-ml/_build/oUnit-$(suite_name)-$(shard_id).log"
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:0:5x5 identity matrix.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:0:5x5 identity matrix is successful.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:0:5x5 identity matrix.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:1:5x6 empty matrix.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:1:5x6 empty matrix is successful.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:1:5x6 empty matrix.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:2:LU decomposition test 1.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: Test test suite for project:2:LU decomposition test 1 has failed.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: not equal in test test suite for project:2:LU decomposition test 1.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: Raised at OUnitAssert.assert_failure in file "src/lib/ounit2/advanced/oUnitAssert.ml", line 45, characters 2-27
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: Called from OUnitRunner.run_one_test.(fun) in file "src/lib/ounit2/advanced/oUnitRunner.ml", line 83, characters 13-26
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: 
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:2:LU decomposition test 1.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: ==============
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Summary:
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: Test test suite for project:2:LU decomposition test 1 has failed.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: not equal in test test suite for project:2:LU decomposition test 1.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: Raised at OUnitAssert.assert_failure in file "src/lib/ounit2/advanced/oUnitAssert.ml", line 45, characters 2-27
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: Called from OUnitRunner.run_one_test.(fun) in file "src/lib/ounit2/advanced/oUnitRunner.ml", line 83, characters 13-26
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 E: 
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:1:5x6 empty matrix is successful.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:0:5x5 identity matrix is successful.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Ran: 3 tests in: 0.13 seconds.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Cases: 3.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Tried: 3.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Errors: 0.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Failures: 1.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Skip: 0.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Todo: 0.
+2021-03-23T08:42:21+00:00 DESKTOP-5F482P8#00 I: Timeout: 0.

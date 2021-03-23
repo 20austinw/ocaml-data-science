@@ -1,16 +1,29 @@
 ### Starting build.
-# Target: naive_bayes.ml.depends, tags: { extension:ml, file:naive_bayes.ml, ocaml, ocamldep, quiet }
-/home/austinw/.opam/cs3110-2021sp/bin/ocamldep.opt -modules naive_bayes.ml > naive_bayes.ml.depends # cached
-# Target: matrix.mli.depends, tags: { extension:mli, file:matrix.mli, ocaml, ocamldep, quiet }
-/home/austinw/.opam/cs3110-2021sp/bin/ocamldep.opt -modules matrix.mli > matrix.mli.depends # cached
-# Target: matrix.cmi, tags: { byte, compile, extension:mli, file:matrix.mli, interf, ocaml, quiet }
-/home/austinw/.opam/cs3110-2021sp/bin/ocamlc.opt -c -o matrix.cmi matrix.mli # cached
-# Target: naive_bayes.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:naive_bayes.cmo, file:naive_bayes.ml, implem, ocaml, quiet }
-/home/austinw/.opam/cs3110-2021sp/bin/ocamlc.opt -c -o naive_bayes.cmo naive_bayes.ml # cached
-# Target: matrix.ml.depends, tags: { extension:ml, file:matrix.ml, ocaml, ocamldep, quiet }
-/home/austinw/.opam/cs3110-2021sp/bin/ocamldep.opt -modules matrix.ml > matrix.ml.depends
-# Target: matrix.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:matrix.cmo, file:matrix.ml, implem, ocaml, quiet }
-/home/austinw/.opam/cs3110-2021sp/bin/ocamlc.opt -c -o matrix.cmo matrix.ml
-# Target: naive_bayes.byte, tags: { byte, dont_link_with, extension:byte, file:naive_bayes.byte, link, ocaml, program, quiet }
-/home/austinw/.opam/cs3110-2021sp/bin/ocamlc.opt matrix.cmo naive_bayes.cmo -o naive_bayes.byte
+# Target: test.ml.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:ml, file:test.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules test.ml > test.ml.depends # cached
+# Target: matrix.mli.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:mli, file:matrix.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules matrix.mli > matrix.mli.depends # cached
+# Target: matrix.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:mli, file:matrix.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o matrix.cmi matrix.mli # cached
+# Target: statistics.mli.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:mli, file:statistics.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules statistics.mli > statistics.mli.depends # cached
+# Target: statistics.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:mli, file:statistics.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o statistics.cmi statistics.mli # cached
+# Target: test.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:test.cmo, file:test.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o test.cmo test.ml # cached
+# Target: matrix.ml.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:ml, file:matrix.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules matrix.ml > matrix.ml.depends
+# Target: statistics.ml.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:ml, file:statistics.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules statistics.ml > statistics.ml.depends # cached
+# Target: statistics.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:statistics.cmo, file:statistics.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o statistics.cmo statistics.ml # cached
+# Target: matrix.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:matrix.cmo, file:matrix.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o matrix.cmo matrix.ml
++ ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o matrix.cmo matrix.ml
+File "matrix.ml", line 103, characters 6-33:
+103 |       Printf.sprintf "%0.5f" !sum;
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 10: this expression should have type unit.
+# Target: test.byte, tags: { package(ANSITerminal), package(ounit2), byte, debug, dont_link_with, extension:byte, file:test.byte, link, ocaml, program, quiet, traverse }
+ocamlfind ocamlc -linkpkg -g -package ounit2 -package ANSITerminal matrix.cmo statistics.cmo test.cmo -o test.byte # cached
 # Compilation successful.
