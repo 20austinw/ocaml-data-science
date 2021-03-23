@@ -148,3 +148,27 @@ let invert mat =
       matrix =
         m |> transpose |> matrix |> split n |> construct |> transpose |> matrix;
     }
+
+let rec det mat =
+  if fst mat.dimensions != snd mat.dimensions then raise InvalidDimensions
+  else
+    let m = to_array mat.matrix in
+    let n = fst mat.dimensions in
+    if n = 2 then (m.(0).(0) *. m.(1).(1)) -. (m.(0).(1) *. m.(1).(0))
+    else
+      let sum = ref 0.0 in
+      for j = 0 to pred n do
+        let m' = Array.make_matrix (n - 1) (n - 1) 0.0 in
+        for i = 1 to pred n do
+          m'.(i - 1) <-
+            Array.append
+              (Array.sub m.(i) 0 j)
+              (Array.sub m.(i) (if j + 1 < n then j + 1 else n - 1) (n - j - 1))
+        done;
+        sum :=
+          !sum
+          +. (-1.0 ** float_of_int (j mod 2))
+             *. m.(0).(j)
+             *. det { dimensions = (n - 1, n - 1); matrix = m' |> to_list }
+      done;
+      !sum
