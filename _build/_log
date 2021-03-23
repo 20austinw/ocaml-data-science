@@ -1,0 +1,16 @@
+### Starting build.
+# Target: naive_bayes.ml.depends, tags: { extension:ml, file:naive_bayes.ml, ocaml, ocamldep, quiet }
+/home/austinw/.opam/cs3110-2021sp/bin/ocamldep.opt -modules naive_bayes.ml > naive_bayes.ml.depends # cached
+# Target: matrix.mli.depends, tags: { extension:mli, file:matrix.mli, ocaml, ocamldep, quiet }
+/home/austinw/.opam/cs3110-2021sp/bin/ocamldep.opt -modules matrix.mli > matrix.mli.depends # cached
+# Target: matrix.cmi, tags: { byte, compile, extension:mli, file:matrix.mli, interf, ocaml, quiet }
+/home/austinw/.opam/cs3110-2021sp/bin/ocamlc.opt -c -o matrix.cmi matrix.mli # cached
+# Target: naive_bayes.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:naive_bayes.cmo, file:naive_bayes.ml, implem, ocaml, quiet }
+/home/austinw/.opam/cs3110-2021sp/bin/ocamlc.opt -c -o naive_bayes.cmo naive_bayes.ml # cached
+# Target: matrix.ml.depends, tags: { extension:ml, file:matrix.ml, ocaml, ocamldep, quiet }
+/home/austinw/.opam/cs3110-2021sp/bin/ocamldep.opt -modules matrix.ml > matrix.ml.depends
+# Target: matrix.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:matrix.cmo, file:matrix.ml, implem, ocaml, quiet }
+/home/austinw/.opam/cs3110-2021sp/bin/ocamlc.opt -c -o matrix.cmo matrix.ml
+# Target: naive_bayes.byte, tags: { byte, dont_link_with, extension:byte, file:naive_bayes.byte, link, ocaml, program, quiet }
+/home/austinw/.opam/cs3110-2021sp/bin/ocamlc.opt matrix.cmo naive_bayes.cmo -o naive_bayes.byte
+# Compilation successful.
