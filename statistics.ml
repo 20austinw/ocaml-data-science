@@ -1,5 +1,3 @@
-exception StatisticsError of string
-
 let sum x = List.fold_left (fun x y -> x +. y) 0. x
 
 let mean x =
@@ -26,8 +24,6 @@ let median x = percentile x 50.
 let q1 x = percentile x 25.
 
 let q3 x = percentile x 75.
-
-let mode x = ()
 
 let var x =
   let mean_x = mean x in
