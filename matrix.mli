@@ -27,3 +27,9 @@ val construct : float list list -> t
 (* [decomp m] takes in type t and produces a pair
    of type t containing the LU decomposition of matrix in t *)
 val lu_decomp : t -> t * t
+
+(* [concat m1 m2] takes in two matrices of type t and returns a concatenated matrix of type t *)
+val concat : t -> t -> t
+
+(* [invert m] takes in a matrix of type t and returns the inverse *)
+val invert : t -> t

@@ -19,11 +19,6 @@ ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules statistics.ml 
 ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o statistics.cmo statistics.ml # cached
 # Target: matrix.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:matrix.cmo, file:matrix.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o matrix.cmo matrix.ml
-+ ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o matrix.cmo matrix.ml
-File "matrix.ml", line 103, characters 6-33:
-103 |       Printf.sprintf "%0.5f" !sum;
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Warning 10: this expression should have type unit.
 # Target: test.byte, tags: { package(ANSITerminal), package(ounit2), byte, debug, dont_link_with, extension:byte, file:test.byte, link, ocaml, program, quiet, traverse }
-ocamlfind ocamlc -linkpkg -g -package ounit2 -package ANSITerminal matrix.cmo statistics.cmo test.cmo -o test.byte # cached
+ocamlfind ocamlc -linkpkg -g -package ounit2 -package ANSITerminal matrix.cmo statistics.cmo test.cmo -o test.byte
 # Compilation successful.

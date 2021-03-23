@@ -100,7 +100,6 @@ let lu_decomp mat =
       for j = 0 to pred i do
         sum := !sum +. (l.(i).(j) *. u.(j).(k))
       done;
-      Printf.sprintf "%0.5f" !sum;
       u.(i).(k) <- m.(i).(k) -. !sum
     done;
     for k = i to pred n do
@@ -108,10 +107,44 @@ let lu_decomp mat =
       else
         let sum = ref 0.0 in
         for j = 0 to pred i do
-          sum := !sum +. (l.(k).(j) *. u.(j).(i));
-          l.(k).(i) <- (m.(k).(i) -. !sum) /. u.(i).(i)
-        done
+          sum := !sum +. (l.(k).(j) *. u.(j).(i))
+        done;
+        l.(k).(i) <- (m.(k).(i) -. !sum) /. u.(i).(i)
     done
   done;
   ( { dimensions = (n, n); matrix = l |> to_list },
     { dimensions = (n, n); matrix = u |> to_list } )
+
+let concat mat1 mat2 =
+  let m1 = mat1.matrix in
+  let m2 = mat2.matrix in
+  let rec helper m1 m2 acc =
+    match m1 with
+    | [] ->
+        {
+          dimensions =
+            (fst mat1.dimensions, snd mat1.dimensions + snd mat2.dimensions);
+          matrix = acc;
+        }
+    | h :: t -> (
+        match m2 with
+        | [] -> assert false
+        | x :: xs -> helper t xs ((h @ x) :: acc))
+  in
+  helper m1 m2 []
+
+let invert mat =
+  if fst mat.dimensions != snd mat.dimensions then raise InvalidDimensions
+  else
+    let n = fst mat.dimensions in
+    let id = eye n in
+    let m = concat mat id |> rref in
+    let rec split n = function
+      | [] -> assert false
+      | x :: xs -> if n = 1 then xs else split (n - 1) xs
+    in
+    {
+      dimensions = (n, n);
+      matrix =
+        m |> transpose |> matrix |> split n |> construct |> transpose |> matrix;
+    }

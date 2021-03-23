@@ -13,6 +13,9 @@ let lu_decomp_test name m res =
     (let x = m |> construct |> lu_decomp in
      (matrix (fst x), matrix (snd x)))
 
+let invert_test name m res =
+  name >:: fun ctxt -> assert_equal res (m |> construct |> invert |> matrix)
+
 let matrix_tests =
   [
     eye_test "5x5 identity matrix" 5
@@ -32,9 +35,12 @@ let matrix_tests =
         [ 0.0; 0.0; 0.0; 0.0; 0.0; 0.0 ];
       ];
     lu_decomp_test "LU decomposition test 1"
-      [ [ 2.0; -1.0; -2.0 ]; [ -4.0; 6.0; 3.0 ]; [ -4.0; -2.0; -8.0 ] ]
+      [ [ 2.0; -1.0; -2.0 ]; [ -4.0; 6.0; 3.0 ]; [ -4.0; -2.0; 8.0 ] ]
       ( [ [ 1.0; 0.0; 0.0 ]; [ -2.0; 1.0; 0.0 ]; [ -2.0; -1.0; 1.0 ] ],
         [ [ 2.0; -1.0; -2.0 ]; [ 0.0; 4.0; -1.0 ]; [ 0.0; 0.0; 3.0 ] ] );
+    invert_test "Matrix inverse test 1"
+      [ [ 3.0; 0.0; 2.0 ]; [ 2.0; 0.0; -2.0 ]; [ 0.0; 1.0; 1.0 ] ]
+      [ [ 0.2; 0.2; 0. ]; [ -0.2; 0.3; 1. ]; [ 0.2; -0.3; 0. ] ];
   ]
 
 let suite = "test suite for project" >::: List.flatten [ matrix_tests ]
