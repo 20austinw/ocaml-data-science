@@ -8,6 +8,7 @@ val dim : t -> int * int
 (* [matrix t] returns the matrix within t *)
 val matrix : t -> float list list
 
+(* [fill mat] returns a m x n matrix of type t filled with float x *)
 val fill : int -> int -> float -> t
 
 (* [empty m n] produces an m by n matrix of 0's *)
@@ -57,4 +58,6 @@ containing the eigenvector and its associated eigenvalue. If dom is true then
 return the dominant eigenvector, else the smallest. *)
 val eigen : t -> bool -> float * t
 
+(* [elem_pow] takes in a matrix of type t and performs element-wise 
+   power to the matrix *)
 val elem_pow : t -> float -> t
