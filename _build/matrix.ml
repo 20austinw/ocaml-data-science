@@ -136,7 +136,7 @@ let concat mat1 mat2 =
     | h :: t -> (
         match m2 with
         | [] -> assert false
-        | x :: xs -> helper t xs ((h @ x) :: acc))
+        | x :: xs -> helper t xs (acc @ [ h @ x ]))
   in
   helper m1 m2 []
 
