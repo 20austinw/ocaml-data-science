@@ -1,0 +1,5 @@
+#require "ounit2";;
+#directory "_build";;
+#load "matrix.cmo";;
+#load "regression.cmo";;
+#load "statistics.cmo";;
