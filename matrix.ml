@@ -24,7 +24,10 @@ let transpose m =
     | (a :: b) :: c ->
         (a :: List.map List.hd c) :: helper (b :: List.map List.tl c)
   in
-  { m with matrix = helper m.matrix }
+  {
+    dimensions = (snd m.dimensions, fst m.dimensions);
+    matrix = helper m.matrix;
+  }
 
 let mult m1 m2 =
   if snd m1.dimensions != fst m2.dimensions then raise InvalidDimensions
@@ -172,3 +175,46 @@ let rec det mat =
              *. det { dimensions = (n - 1, n - 1); matrix = m' |> to_list }
       done;
       !sum
+
+let magnitude mat =
+  let m =
+    if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
+  in
+  match m with
+  | [] -> assert false
+  | h :: t -> List.fold_left (fun acc x -> (x ** 2.) +. acc) 0. h ** 0.5
+
+let normalize mat =
+  let m =
+    if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
+  in
+  match m with
+  | [] -> assert false
+  | h :: t ->
+      let magn = magnitude mat in
+      let res =
+        {
+          dimensions = (1, List.length h);
+          matrix = [ List.map (fun x -> x /. magn) h ];
+        }
+      in
+      if mat.dimensions = res.dimensions then res else transpose res
+
+(* Source: https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec26.pdf *)
+let eigen mat dom =
+  let m = if dom = true then mat else invert mat in
+  let n = snd mat.dimensions in
+  let b_k =
+    {
+      dimensions = (1, n);
+      matrix = [ List.init n (fun x -> Random.float 1.0) ];
+    }
+    |> transpose
+  in
+  let rec power_iteration b_k n =
+    let b_k1 = mult m b_k in
+    let b_k1_norm = normalize b_k1 in
+    if n = 0 then (magnitude b_k1, b_k1_norm)
+    else power_iteration b_k1_norm (n - 1)
+  in
+  power_iteration b_k 1000

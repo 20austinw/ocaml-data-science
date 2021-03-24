@@ -19,6 +19,9 @@ let invert_test name m res =
 let det_test name m res =
   name >:: fun ctxt -> assert_equal res (m |> construct |> det)
 
+let normalize_test name m res =
+  name >:: fun ctxt -> assert_equal res (m |> construct |> normalize |> matrix)
+
 let matrix_tests =
   [
     eye_test "5x5 identity matrix" 5
@@ -55,7 +58,11 @@ let matrix_tests =
         [ 4.0; 3.0; 9.0; 7.0 ];
         [ 5.0; 2.0; 0.0; 9.0 ];
       ]
-      (-376.1);
+      (-376.0);
+    normalize_test "Normalize test: Row vector" [ [ 1.; 2.; 3. ] ]
+      [ [ 1. /. 14.; 2. /. 14.; 3. /. 14. ] ];
+    normalize_test "Normalize test: Column vector" [ [ 1. ]; [ 2. ]; [ 3. ] ]
+      [ [ 1. /. 14. ]; [ 2. /. 14. ]; [ 3. /. 14. ] ];
   ]
 
 let suite = "test suite for project" >::: List.flatten [ matrix_tests ]

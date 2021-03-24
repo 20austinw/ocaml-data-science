@@ -20,19 +20,28 @@ val mult : t -> t -> t
 (* [echelon t] returns the reduced form of matrix m*)
 val rref : t -> t
 
-(* [construct m] takes in a float list list and returns of matrix of type t
-   and throws InvalidDimensions if rows are not of the same length *)
+(* [construct m] takes in a float list list and returns of matrix of
+   type t and throws InvalidDimensions if rows are not of the same
+   length *)
 val construct : float list list -> t
 
-(* [decomp m] takes in type t and produces a pair
-   of type t containing the LU decomposition of matrix in t *)
+(* [decomp m] takes in type t and produces a pair of type t containing
+   the LU decomposition of matrix in t *)
 val lu_decomp : t -> t * t
 
-(* [concat m1 m2] takes in two matrices of type t and returns a concatenated matrix of type t *)
+(* [concat m1 m2] takes in two matrices of type t and returns a
+   concatenated matrix of type t *)
 val concat : t -> t -> t
 
 (* [invert m] takes in a matrix of type t and returns the inverse *)
 val invert : t -> t
 
 (* [det m] takes in a matrix of type t and returns its determinant *)
-val det : t -> float 
+val det : t -> float
+
+val eigenvector : t -> t
+
+(* [normalize mat dom] takes in a matrix of type t and returns a pair float * t 
+containing the eigenvector and its associated eigenvalue. If dom is true then 
+return the dominant eigenvector, else the smallest. *)
+val normalize : t -> bool -> float * t
