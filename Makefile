@@ -1,4 +1,4 @@
-MODULES=matrix statistics 
+MODULES=matrix statistics polynomial_regression
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)

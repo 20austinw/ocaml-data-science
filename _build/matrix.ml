@@ -6,11 +6,13 @@ let dim m = m.dimensions
 
 let matrix m = m.matrix
 
-let empty m n =
+let fill m n x =
   {
     dimensions = (m, n);
-    matrix = List.init m (fun i -> List.init n (fun j -> 0.0));
+    matrix = List.init m (fun i -> List.init n (fun j -> x));
   }
+
+let empty m n = fill m n 0.0
 
 let eye n =
   {
@@ -226,3 +228,7 @@ let eigen mat dom =
     else power_iteration b_k1_norm (n - 1)
   in
   power_iteration b_k 1000
+
+let elem_pow mat r =
+  let m = mat.matrix in
+  { mat with matrix = List.map (fun x -> List.map (fun x -> x ** r) x) m }

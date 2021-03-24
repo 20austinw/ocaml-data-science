@@ -3,10 +3,12 @@ type t
 exception InvalidDimensions
 
 (* [dim m] returns the dimensions of matrix t *)
-val dim: t -> int * int
+val dim : t -> int * int
 
 (* [matrix t] returns the matrix within t *)
 val matrix : t -> float list list
+
+val fill : int -> int -> float -> t
 
 (* [empty m n] produces an m by n matrix of 0's *)
 val empty : int -> int -> t
@@ -54,3 +56,5 @@ val normalize : t -> t
 containing the eigenvector and its associated eigenvalue. If dom is true then 
 return the dominant eigenvector, else the smallest. *)
 val eigen : t -> bool -> float * t
+
+val elem_pow : t -> float -> t
