@@ -2,7 +2,9 @@ type t = { dimensions : int * int; matrix : float list list }
 
 exception InvalidDimensions
 
-let matrix t = t.matrix
+let dim m = m.dimensions
+
+let matrix m = m.matrix
 
 let empty m n =
   {
@@ -177,28 +179,34 @@ let rec det mat =
       !sum
 
 let magnitude mat =
-  let m =
-    if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
-  in
-  match m with
-  | [] -> assert false
-  | h :: t -> List.fold_left (fun acc x -> (x ** 2.) +. acc) 0. h ** 0.5
+  if fst mat.dimensions != 1 && snd mat.dimensions != 1 then
+    raise InvalidDimensions
+  else
+    let m =
+      if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
+    in
+    match m with
+    | [] -> assert false
+    | h :: t -> List.fold_left (fun acc x -> (x ** 2.) +. acc) 0. h ** 0.5
 
 let normalize mat =
-  let m =
-    if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
-  in
-  match m with
-  | [] -> assert false
-  | h :: t ->
-      let magn = magnitude mat in
-      let res =
-        {
-          dimensions = (1, List.length h);
-          matrix = [ List.map (fun x -> x /. magn) h ];
-        }
-      in
-      if mat.dimensions = res.dimensions then res else transpose res
+  if fst mat.dimensions != 1 && snd mat.dimensions != 1 then
+    raise InvalidDimensions
+  else
+    let m =
+      if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
+    in
+    match m with
+    | [] -> assert false
+    | h :: t ->
+        let magn = magnitude mat in
+        let res =
+          {
+            dimensions = (1, List.length h);
+            matrix = [ List.map (fun x -> x /. magn) h ];
+          }
+        in
+        if mat.dimensions = res.dimensions then res else transpose res
 
 (* Source: https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec26.pdf *)
 let eigen mat dom =

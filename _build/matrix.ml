@@ -2,7 +2,9 @@ type t = { dimensions : int * int; matrix : float list list }
 
 exception InvalidDimensions
 
-let matrix t = t.matrix
+let dim m = m.dimensions
+
+let matrix m = m.matrix
 
 let empty m n =
   {
@@ -24,7 +26,10 @@ let transpose m =
     | (a :: b) :: c ->
         (a :: List.map List.hd c) :: helper (b :: List.map List.tl c)
   in
-  { dimensions = (snd m.dimensions, fst m.dimensions); matrix = helper m.matrix }
+  {
+    dimensions = (snd m.dimensions, fst m.dimensions);
+    matrix = helper m.matrix;
+  }
 
 let mult m1 m2 =
   if snd m1.dimensions != fst m2.dimensions then raise InvalidDimensions
@@ -173,23 +178,39 @@ let rec det mat =
       done;
       !sum
 
-let normalize mat =
-  let m =
-    if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
-  in
-  match m with
-  | [] -> assert false
-  | h :: t ->
-      let magn = List.fold_left (fun acc x -> (x ** 2.) +. acc) 0. h in
-      let res =
-        {
-          dimensions = (1, List.length h);
-          matrix = [ List.map (fun x -> x /. magn) h ];
-        }
-      in
-      if mat.dimensions = res.dimensions then res else transpose res
+let magnitude mat =
+  if fst mat.dimensions != 1 && snd mat.dimensions != 1 then
+    raise InvalidDimensions
+  else
+    let m =
+      if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
+    in
+    match m with
+    | [] -> assert false
+    | h :: t -> List.fold_left (fun acc x -> (x ** 2.) +. acc) 0. h ** 0.5
 
-let eigenvector mat =
+let normalize mat =
+  if fst mat.dimensions != 1 && snd mat.dimensions != 1 then
+    raise InvalidDimensions
+  else
+    let m =
+      if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
+    in
+    match m with
+    | [] -> assert false
+    | h :: t ->
+        let magn = magnitude mat in
+        let res =
+          {
+            dimensions = (1, List.length h);
+            matrix = [ List.map (fun x -> x /. magn) h ];
+          }
+        in
+        if mat.dimensions = res.dimensions then res else transpose res
+
+(* Source: https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec26.pdf *)
+let eigen mat dom =
+  let m = if dom = true then mat else invert mat in
   let n = snd mat.dimensions in
   let b_k =
     {
@@ -199,10 +220,9 @@ let eigenvector mat =
     |> transpose
   in
   let rec power_iteration b_k n =
-    if n = 0 then b_k
-    else
-      let b_k1 = mult mat b_k in
-      let b_k1_norm = normalize b_k1 in
-      power_iteration b_k1_norm (n - 1)
+    let b_k1 = mult m b_k in
+    let b_k1_norm = normalize b_k1 in
+    if n = 0 then (magnitude b_k1, b_k1_norm)
+    else power_iteration b_k1_norm (n - 1)
   in
   power_iteration b_k 1000

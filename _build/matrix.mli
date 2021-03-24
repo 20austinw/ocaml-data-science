@@ -2,7 +2,10 @@ type t
 
 exception InvalidDimensions
 
-(* [matrix t] retrieves the matrix within t *)
+(* [dim m] returns the dimensions of matrix t *)
+val dim: t -> int * int
+
+(* [matrix t] returns the matrix within t *)
 val matrix : t -> float list list
 
 (* [empty m n] produces an m by n matrix of 0's *)
@@ -39,6 +42,15 @@ val invert : t -> t
 (* [det m] takes in a matrix of type t and returns its determinant *)
 val det : t -> float
 
-val eigenvector : t -> t 
+(* [magnitude mat] takes in a matrix of type t and returns its magnitude
+   Requires: t is a vector *)
+val magnitude : t -> float
 
+(* [normalize mat] takes in a matrix of type t and returns its norm 
+   Requires: t is a vector*)
 val normalize : t -> t
+
+(* [eigen mat dom] takes in a matrix of type t and returns a pair float * t 
+containing the eigenvector and its associated eigenvalue. If dom is true then 
+return the dominant eigenvector, else the smallest. *)
+val eigen : t -> bool -> float * t

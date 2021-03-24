@@ -7,6 +7,12 @@ let eye_test name n res = name >:: fun ctxt -> assert_equal res (eye n |> matrix
 let empty_test name m n res =
   name >:: fun ctxt -> assert_equal res (empty m n |> matrix)
 
+let transpose_test name m res =
+  name >:: fun ctxt ->
+  let mat = m |> construct |> transpose in
+  assert_equal res (mat |> matrix);
+  assert_equal (List.length res, res |> List.hd |> List.length) (dim mat)
+
 let lu_decomp_test name m res =
   name >:: fun ctxt ->
   assert_equal res
@@ -40,6 +46,11 @@ let matrix_tests =
         [ 0.0; 0.0; 0.0; 0.0; 0.0; 0.0 ];
         [ 0.0; 0.0; 0.0; 0.0; 0.0; 0.0 ];
       ];
+    transpose_test "Transpose test on vector" [ [ 1.; 2.; 3.; 4. ] ]
+      [ [ 1. ]; [ 2. ]; [ 3. ]; [ 4. ] ];
+    transpose_test "Transpose test on rectangular matrix"
+      [ [ 1.; 2.; 3.; 4. ]; [ 2.; 3.; 4.; 5. ]; [ 3.; 4.; 5.; 6. ] ]
+      [ [ 1.; 2.; 3. ]; [ 2.; 3.; 4. ]; [ 3.; 4.; 5. ]; [ 4.; 5.; 6. ] ];
     lu_decomp_test "LU decomposition test 1"
       [ [ 2.0; -1.0; -2.0 ]; [ -4.0; 6.0; 3.0 ]; [ -4.0; -2.0; 8.0 ] ]
       ( [ [ 1.0; 0.0; 0.0 ]; [ -2.0; 1.0; 0.0 ]; [ -2.0; -1.0; 1.0 ] ],
@@ -59,10 +70,12 @@ let matrix_tests =
         [ 5.0; 2.0; 0.0; 9.0 ];
       ]
       (-376.0);
-    normalize_test "Normalize test: Row vector" [ [ 1.; 2.; 3. ] ]
-      [ [ 1. /. 14.; 2. /. 14.; 3. /. 14. ] ];
-    normalize_test "Normalize test: Column vector" [ [ 1. ]; [ 2. ]; [ 3. ] ]
-      [ [ 1. /. 14. ]; [ 2. /. 14. ]; [ 3. /. 14. ] ];
+    (let m = [ [ 1.; 2.; 3. ] ] |> construct |> magnitude in
+     normalize_test "Normalize test: Row vector" [ [ 1.; 2.; 3. ] ]
+       [ [ 1. /. m; 2. /. m; 3. /. m ] ]);
+    (let m = [ [ 1. ]; [ 2. ]; [ 3. ] ] |> construct |> magnitude in
+     normalize_test "Normalize test: Column vector" [ [ 1. ]; [ 2. ]; [ 3. ] ]
+       [ [ 1. /. m ]; [ 2. /. m ]; [ 3. /. m ] ]);
   ]
 
 let suite = "test suite for project" >::: List.flatten [ matrix_tests ]

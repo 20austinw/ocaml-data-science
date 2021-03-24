@@ -1,6 +1,6 @@
 ### Starting build.
 # Target: test.ml.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:ml, file:test.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules test.ml > test.ml.depends # cached
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules test.ml > test.ml.depends
 # Target: matrix.mli.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:mli, file:matrix.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules matrix.mli > matrix.mli.depends # cached
 # Target: matrix.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:mli, file:matrix.mli, interf, ocaml, quiet, traverse }
@@ -10,15 +10,15 @@ ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules statistics.mli
 # Target: statistics.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:mli, file:statistics.mli, interf, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o statistics.cmi statistics.mli # cached
 # Target: test.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:test.cmo, file:test.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o test.cmo test.ml # cached
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o test.cmo test.ml
 # Target: matrix.ml.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:ml, file:matrix.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules matrix.ml > matrix.ml.depends
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules matrix.ml > matrix.ml.depends # cached
+# Target: matrix.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:matrix.cmo, file:matrix.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o matrix.cmo matrix.ml # cached
 # Target: statistics.ml.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:ml, file:statistics.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules statistics.ml > statistics.ml.depends # cached
 # Target: statistics.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:statistics.cmo, file:statistics.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o statistics.cmo statistics.ml # cached
-# Target: matrix.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:matrix.cmo, file:matrix.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o matrix.cmo matrix.ml
 # Target: test.byte, tags: { package(ANSITerminal), package(ounit2), byte, debug, dont_link_with, extension:byte, file:test.byte, link, ocaml, program, quiet, traverse }
 ocamlfind ocamlc -linkpkg -g -package ounit2 -package ANSITerminal matrix.cmo statistics.cmo test.cmo -o test.byte
 # Compilation successful.
