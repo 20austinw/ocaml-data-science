@@ -4,8 +4,8 @@ open Statistics
 
 let eye_test name n res = name >:: fun ctxt -> assert_equal res (eye n |> matrix)
 
-let empty_test name m n res =
-  name >:: fun ctxt -> assert_equal res (empty m n |> matrix)
+let zero_test name m n res =
+  name >:: fun ctxt -> assert_equal res (zero m n |> matrix)
 
 let transpose_test name m res =
   name >:: fun ctxt ->
@@ -42,7 +42,7 @@ let matrix_tests =
         [ 0.0; 0.0; 0.0; 1.0; 0.0 ];
         [ 0.0; 0.0; 0.0; 0.0; 1.0 ];
       ];
-    empty_test "5x6 empty matrix" 5 6
+    zero_test "5x6 zero matrix" 5 6
       [
         [ 0.0; 0.0; 0.0; 0.0; 0.0; 0.0 ];
         [ 0.0; 0.0; 0.0; 0.0; 0.0; 0.0 ];

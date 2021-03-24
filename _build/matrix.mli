@@ -12,7 +12,7 @@ val matrix : t -> float list list
 val fill : int -> int -> float -> t
 
 (* [empty m n] produces an m by n matrix of 0's *)
-val empty : int -> int -> t
+val zero : int -> int -> t
 
 (* [eye n] produces an n by n identity matrix *)
 val eye : int -> t

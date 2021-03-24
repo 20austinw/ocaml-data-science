@@ -12,7 +12,7 @@ let fill m n x =
     matrix = List.init m (fun i -> List.init n (fun j -> x));
   }
 
-let empty m n = fill m n 0.0
+let zero m n = fill m n 0.0
 
 let eye n =
   {
@@ -99,8 +99,8 @@ let construct lst =
 let lu_decomp mat =
   let n = fst mat.dimensions in
   let m = mat.matrix |> to_array in
-  let l = (empty n n).matrix |> to_array in
-  let u = (empty n n).matrix |> to_array in
+  let l = (zero n n).matrix |> to_array in
+  let u = (zero n n).matrix |> to_array in
   for i = 0 to pred n do
     for k = i to pred n do
       let sum = ref 0.0 in

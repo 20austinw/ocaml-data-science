@@ -4,9 +4,9 @@ ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules matrix.mli > m
 # Target: matrix.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, extension:mli, file:matrix.mli, interf, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o matrix.cmi matrix.mli # cached
 # Target: matrix.ml.depends, tags: { package(ANSITerminal), package(ounit2), extension:ml, file:matrix.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules matrix.ml > matrix.ml.depends
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules matrix.ml > matrix.ml.depends # cached
 # Target: matrix.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, extension:cmo, extension:ml, file:matrix.cmo, file:matrix.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o matrix.cmo matrix.ml
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o matrix.cmo matrix.ml # cached
 # Target: statistics.mli.depends, tags: { package(ANSITerminal), package(ounit2), extension:mli, file:statistics.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules statistics.mli > statistics.mli.depends # cached
 # Target: statistics.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, extension:mli, file:statistics.mli, interf, ocaml, quiet, traverse }
@@ -20,7 +20,7 @@ ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules polynomial_reg
 # Target: polynomial_regression.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, extension:mli, file:polynomial_regression.mli, interf, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o polynomial_regression.cmi polynomial_regression.mli # cached
 # Target: polynomial_regression.ml.depends, tags: { package(ANSITerminal), package(ounit2), extension:ml, file:polynomial_regression.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules polynomial_regression.ml > polynomial_regression.ml.depends # cached
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules polynomial_regression.ml > polynomial_regression.ml.depends
 # Target: polynomial_regression.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, extension:cmo, extension:ml, file:polynomial_regression.cmo, file:polynomial_regression.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o polynomial_regression.cmo polynomial_regression.ml # cached
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o polynomial_regression.cmo polynomial_regression.ml
 # Compilation successful.
