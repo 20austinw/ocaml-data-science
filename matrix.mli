@@ -42,6 +42,9 @@ val concat : t -> t -> t
 (* [invert m] takes in a matrix of type t and returns the inverse *)
 val invert : t -> t
 
+(* [pinv m] takes in a matrix of type t and returns its pseudoinverse *)
+val pinv : t -> t
+
 (* [det m] takes in a matrix of type t and returns its determinant *)
 val det : t -> float
 

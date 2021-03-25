@@ -232,3 +232,8 @@ let eigen mat dom =
 let elem_pow mat r =
   let m = mat.matrix in
   { mat with matrix = List.map (fun x -> List.map (fun x -> x ** r) x) m }
+
+let pinv m =
+  let m' = transpose m in
+  let dot_inverse = m |> mult m' |> invert in
+  mult dot_inverse m'
