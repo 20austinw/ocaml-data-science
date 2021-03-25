@@ -4,8 +4,8 @@ open Statistics
 
 let eye_test name n res = name >:: fun ctxt -> assert_equal res (eye n |> matrix)
 
-let empty_test name m n res =
-  name >:: fun ctxt -> assert_equal res (empty m n |> matrix)
+let zero_test name m n res =
+  name >:: fun ctxt -> assert_equal res (zero m n |> matrix)
 
 let transpose_test name m res =
   name >:: fun ctxt ->
@@ -32,6 +32,9 @@ let concat_test name m1 m2 res =
   name >:: fun ctxt ->
   assert_equal res (concat (construct m1) (construct m2) |> matrix)
 
+let scale_test name m c res =
+  name >:: fun ctxt -> assert_equal res (scale (construct m) c |> matrix)
+
 let matrix_tests =
   [
     eye_test "5x5 identity matrix" 5
@@ -42,7 +45,7 @@ let matrix_tests =
         [ 0.0; 0.0; 0.0; 1.0; 0.0 ];
         [ 0.0; 0.0; 0.0; 0.0; 1.0 ];
       ];
-    empty_test "5x6 empty matrix" 5 6
+    zero_test "5x6 zero matrix" 5 6
       [
         [ 0.0; 0.0; 0.0; 0.0; 0.0; 0.0 ];
         [ 0.0; 0.0; 0.0; 0.0; 0.0; 0.0 ];
@@ -59,9 +62,9 @@ let matrix_tests =
       [ [ 2.0; -1.0; -2.0 ]; [ -4.0; 6.0; 3.0 ]; [ -4.0; -2.0; 8.0 ] ]
       ( [ [ 1.0; 0.0; 0.0 ]; [ -2.0; 1.0; 0.0 ]; [ -2.0; -1.0; 1.0 ] ],
         [ [ 2.0; -1.0; -2.0 ]; [ 0.0; 4.0; -1.0 ]; [ 0.0; 0.0; 3.0 ] ] );
-    invert_test "Matrix inverse test 1"
-      [ [ 3.0; 0.0; 2.0 ]; [ 2.0; 0.0; -2.0 ]; [ 0.0; 1.0; 1.0 ] ]
-      [ [ 0.2; 0.2; 0. ]; [ -0.2; 0.3; 1. ]; [ 0.2; -0.3; 0. ] ];
+    (* invert_test "Matrix inverse test 1"
+       [ [ 3.0; 0.0; 2.0 ]; [ 2.0; 0.0; -2.0 ]; [ 0.0; 1.0; 1.0 ] ]
+       [ [ 0.2; 0.2; 0. ]; [ -0.2; 0.3; 1. ]; [ 0.2; -0.3; 0. ] ]; *)
     det_test "2x2 matrix" [ [ 4.0; 6.0 ]; [ 3.0; 8.0 ] ] 14.0;
     det_test "3x3 matrix"
       [ [ 6.0; 1.0; 1.0 ]; [ 4.0; -2.0; 5.0 ]; [ 2.0; 8.0; 7.0 ] ]
@@ -86,6 +89,10 @@ let matrix_tests =
     concat_test "Concat test 2" [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1.; 1. ]; [ 2.; 2. ]; [ 3.; 3. ] ]
       [ [ 1.; 1.; 1. ]; [ 2.; 2.; 2. ]; [ 3.; 3.; 3. ] ];
+    scale_test "Scale test"
+      [ [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ] ]
+      5.
+      [ [ 5.; 5.; 5. ]; [ 5.; 5.; 5. ]; [ 5.; 5.; 5. ] ];
   ]
 
 let suite = "test suite for project" >::: List.flatten [ matrix_tests ]

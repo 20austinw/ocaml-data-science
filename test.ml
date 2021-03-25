@@ -32,6 +32,9 @@ let concat_test name m1 m2 res =
   name >:: fun ctxt ->
   assert_equal res (concat (construct m1) (construct m2) |> matrix)
 
+let scale_test name m c res =
+  name >:: fun ctxt -> assert_equal res (scale (construct m) c |> matrix)
+
 let matrix_tests =
   [
     eye_test "5x5 identity matrix" 5
@@ -86,6 +89,10 @@ let matrix_tests =
     concat_test "Concat test 2" [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1.; 1. ]; [ 2.; 2. ]; [ 3.; 3. ] ]
       [ [ 1.; 1.; 1. ]; [ 2.; 2.; 2. ]; [ 3.; 3.; 3. ] ];
+    scale_test "Scale test"
+      [ [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ] ]
+      5.
+      [ [ 5.; 5.; 5. ]; [ 5.; 5.; 5. ]; [ 5.; 5.; 5. ] ];
   ]
 
 let suite = "test suite for project" >::: List.flatten [ matrix_tests ]

@@ -156,6 +156,10 @@ let invert mat =
         m |> transpose |> matrix |> split n |> construct |> transpose |> matrix;
     }
 
+let scale mat c =
+  let m = mat.matrix in
+  { mat with matrix = List.map (fun x -> List.map (fun x -> c *. x) x) m }
+
 let rec det mat =
   if fst mat.dimensions != snd mat.dimensions then raise InvalidDimensions
   else
@@ -193,7 +197,8 @@ let magnitude mat =
 
 let normalize mat =
   if fst mat.dimensions != 1 && snd mat.dimensions != 1 then
-    raise InvalidDimensions
+    let det' = det mat in
+    scale mat (1. /. det')
   else
     let m =
       if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix

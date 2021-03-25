@@ -61,6 +61,9 @@ containing the eigenvector and its associated eigenvalue. If dom is true then
 return the dominant eigenvector, else the smallest. *)
 val eigen : t -> bool -> float * t
 
-(* [elem_pow] takes in a matrix of type t and performs element-wise 
+(* [elem_pow mat r] takes in a matrix of type t and performs element-wise 
    power to the matrix *)
 val elem_pow : t -> float -> t
+
+(* [scale mat c] takes in a matrix of type t and scales it by factor of c*)
+val scale : t -> float -> t 
