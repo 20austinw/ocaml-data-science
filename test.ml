@@ -2,6 +2,14 @@ open OUnit2
 open Matrix
 open Statistics
 
+let comp_matrix mat1 mat2 =
+  assert_equal (dim mat1) (dim mat2);
+  let m1 = matrix mat1 and m2 = matrix mat2 in
+  List.iter2
+    (fun l1 l2 ->
+      List.iter2 (fun x1 x2 -> assert (abs_float (x1 -. x2) < 0.0001)) l1 l2)
+    m1 m2
+
 let eye_test name n res = name >:: fun ctxt -> assert_equal res (eye n |> matrix)
 
 let zero_test name m n res =
@@ -20,7 +28,7 @@ let lu_decomp_test name m res =
      (matrix (fst x), matrix (snd x)))
 
 let invert_test name m res =
-  name >:: fun ctxt -> assert_equal res (m |> construct |> invert |> matrix)
+  name >:: fun ctxt -> comp_matrix (res |> construct) (m |> construct |> invert)
 
 let det_test name m res =
   name >:: fun ctxt -> assert_equal res (m |> construct |> det)
@@ -62,9 +70,9 @@ let matrix_tests =
       [ [ 2.0; -1.0; -2.0 ]; [ -4.0; 6.0; 3.0 ]; [ -4.0; -2.0; 8.0 ] ]
       ( [ [ 1.0; 0.0; 0.0 ]; [ -2.0; 1.0; 0.0 ]; [ -2.0; -1.0; 1.0 ] ],
         [ [ 2.0; -1.0; -2.0 ]; [ 0.0; 4.0; -1.0 ]; [ 0.0; 0.0; 3.0 ] ] );
-    (* invert_test "Matrix inverse test 1"
-       [ [ 3.0; 0.0; 2.0 ]; [ 2.0; 0.0; -2.0 ]; [ 0.0; 1.0; 1.0 ] ]
-       [ [ 0.2; 0.2; 0. ]; [ -0.2; 0.3; 1. ]; [ 0.2; -0.3; 0. ] ]; *)
+    invert_test "Matrix inverse test 1"
+      [ [ 3.0; 0.0; 2.0 ]; [ 2.0; 0.0; -2.0 ]; [ 0.0; 1.0; 1.0 ] ]
+      [ [ 0.2; 0.2; 0. ]; [ -0.2; 0.3; 1. ]; [ 0.2; -0.3; 0. ] ];
     det_test "2x2 matrix" [ [ 4.0; 6.0 ]; [ 3.0; 8.0 ] ] 14.0;
     det_test "3x3 matrix"
       [ [ 6.0; 1.0; 1.0 ]; [ 4.0; -2.0; 5.0 ]; [ 2.0; 8.0; 7.0 ] ]
