@@ -1,5 +1,3 @@
-open Csv
-
 type dataframe = { header : string list; data : string list list }
 
 let loadfile file_name =
