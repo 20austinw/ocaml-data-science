@@ -67,8 +67,6 @@ let fit x y =
 let predict x = h x !theta
 
 (* below this is testing *)
-(* testing using a dataset on this link:
-   https://towardsdatascience.com/binary-classification-and-logistic-regression-for-beginners-dd6213bf7162 *)
 
 let theta_s = construct [ [ 10.655 ]; [ 0.821 ] ]
 
