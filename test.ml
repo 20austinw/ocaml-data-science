@@ -44,7 +44,8 @@ let scale_test name m c res =
   name >:: fun ctxt -> assert_equal res (scale (construct m) c |> matrix)
 
 let op_test name m1 m2 f res =
-  name >:: fun ctxt -> comp_matrix (res |> construct) (op m1 m2 f |> construct)
+  name >:: fun ctxt ->
+  comp_matrix (res |> construct) (op (construct m1) (construct m2) f)
 
 let matrix_tests =
   [
