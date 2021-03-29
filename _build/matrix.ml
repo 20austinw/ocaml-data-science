@@ -242,3 +242,9 @@ let pinv m =
   let m' = transpose m in
   let dot_inverse = m |> mult m' |> invert in
   mult dot_inverse m'
+
+let add mat1 mat2 f =
+  let m1 = mat1.matrix in
+  let m2 = mat2.matrix in
+  let m' = List.map2 (fun l1 l2 -> List.map2 (fun x y -> f x y) l1 l2) m1 m2 in
+  { mat1 with matrix = m' }
