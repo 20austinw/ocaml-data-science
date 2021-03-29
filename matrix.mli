@@ -67,3 +67,5 @@ val elem_pow : t -> float -> t
 
 (* [scale mat c] takes in a matrix of type t and scales it by factor of c*)
 val scale : t -> float -> t 
+
+val op : t -> t -> (float -> float -> float) -> t
