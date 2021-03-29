@@ -47,6 +47,9 @@ let op_test name m1 m2 f res =
   name >:: fun ctxt ->
   comp_matrix (res |> construct) (op (construct m1) (construct m2) f)
 
+let dot name v1 v2 res =
+  name >:: fun ctxt -> assert_equal res (dot (construct v1) (construct v2))
+
 let matrix_tests =
   [
     eye_test "5x5 identity matrix" 5
@@ -110,6 +113,13 @@ let matrix_tests =
       [ [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ] ]
       ( +. )
       [ [ 2.; 2.; 2. ]; [ 2.; 2.; 2. ]; [ 2.; 2.; 2. ] ];
+    dot "Dot test 1" [ [ 1.; 2.; 3.; 4. ] ] [ [ 1.; 2.; 3.; 4. ] ] 30.0;
+    dot "dot test 2"
+      [ [ 1. ]; [ 2. ]; [ 3. ]; [ 4. ] ]
+      [ [ 1.; 2.; 3.; 4. ] ] 30.0;
+    dot "dot test 3" [ [ 1.; 2.; 3.; 4. ] ]
+      [ [ 1. ]; [ 2. ]; [ 3. ]; [ 4. ] ]
+      30.0;
   ]
 
 let suite = "test suite for project" >::: List.flatten [ matrix_tests ]

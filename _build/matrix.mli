@@ -71,3 +71,7 @@ val scale : t -> float -> t
 val op : t -> t -> (float -> float -> float) -> t
 (** [op m1 m2 f] applies the operator f to pair of elements in m1 m2 and
 returns [[f a1 b1; f a2 b2; ...]; [...]] *)
+
+val dot : t -> t -> float 
+(** [dot v1 v2] returns the dot product between two vectors
+Requires: v1 and v2 be two one-dimentional matrices *)

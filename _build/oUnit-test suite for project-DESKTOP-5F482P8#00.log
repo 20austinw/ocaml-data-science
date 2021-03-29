@@ -1,90 +1,102 @@
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Runner: sequential
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Chooser: simple
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration suite_name = "test suite for project"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration cache_filename = "/mnt/c/Users/hw424/Documents/3110/ocaml-data-science-ml/_build/oUnit-$(suite_name).cache"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration run_gc_full_major = "true"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration display = "true"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration results_style_1_X = "false"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration testdata_dir = "none"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration health_check_interval = "1."
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration verbose = "false"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration chooser = "simple"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration output_html_dir = "none"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration processes_kill_period = "5."
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration runner = "sequential"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration shards = "4"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration processes_grace_period = "5."
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration log_encoding = "utf-8"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration output_junit_file = "none"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration ci = "false"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Configuration output_file = "/mnt/c/Users/hw424/Documents/3110/ocaml-data-science-ml/_build/oUnit-$(suite_name)-$(shard_id).log"
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:0:5x5 identity matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:0:5x5 identity matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:0:5x5 identity matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:1:5x6 zero matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:1:5x6 zero matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:1:5x6 zero matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:2:Transpose test on vector.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:2:Transpose test on vector is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:2:Transpose test on vector.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:3:Transpose test on rectangular matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:3:Transpose test on rectangular matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:3:Transpose test on rectangular matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:4:LU decomposition test 1.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:4:LU decomposition test 1 is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:4:LU decomposition test 1.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:5:Matrix inverse test 1.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:5:Matrix inverse test 1 is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:5:Matrix inverse test 1.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:6:2x2 matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:6:2x2 matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:6:2x2 matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:7:3x3 matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:7:3x3 matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:7:3x3 matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:8:4x4 matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:8:4x4 matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:8:4x4 matrix.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:9:Normalize test: Row vector.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:9:Normalize test: Row vector is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:9:Normalize test: Row vector.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:10:Normalize test: Column vector.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:10:Normalize test: Column vector is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:10:Normalize test: Column vector.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:11:Concat test 1.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:11:Concat test 1 is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:11:Concat test 1.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:12:Concat test 2.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:12:Concat test 2 is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:12:Concat test 2.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:13:Scale test.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:13:Scale test is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:13:Scale test.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:14:Operation test.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:14:Operation test is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:14:Operation test.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: ==============
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Summary:
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:14:Operation test is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:13:Scale test is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:12:Concat test 2 is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:11:Concat test 1 is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:10:Normalize test: Column vector is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:9:Normalize test: Row vector is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:8:4x4 matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:7:3x3 matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:6:2x2 matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:5:Matrix inverse test 1 is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:4:LU decomposition test 1 is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:3:Transpose test on rectangular matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:2:Transpose test on vector is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:1:5x6 zero matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:0:5x5 identity matrix is successful.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Ran: 15 tests in: 0.06 seconds.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Cases: 15.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Tried: 15.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Errors: 0.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Failures: 0.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Skip: 0.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Todo: 0.
-2021-03-29T08:14:08+00:00 DESKTOP-5F482P8#00 I: Timeout: 0.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Runner: sequential
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Chooser: simple
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration suite_name = "test suite for project"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration cache_filename = "/mnt/c/Users/hw424/Documents/3110/ocaml-data-science-ml/_build/oUnit-$(suite_name).cache"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration run_gc_full_major = "true"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration display = "true"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration results_style_1_X = "false"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration testdata_dir = "none"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration health_check_interval = "1."
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration verbose = "false"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration chooser = "simple"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration output_html_dir = "none"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration processes_kill_period = "5."
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration runner = "sequential"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration shards = "4"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration processes_grace_period = "5."
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration log_encoding = "utf-8"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration output_junit_file = "none"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration ci = "false"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Configuration output_file = "/mnt/c/Users/hw424/Documents/3110/ocaml-data-science-ml/_build/oUnit-$(suite_name)-$(shard_id).log"
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:0:5x5 identity matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:0:5x5 identity matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:0:5x5 identity matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:1:5x6 zero matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:1:5x6 zero matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:1:5x6 zero matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:2:Transpose test on vector.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:2:Transpose test on vector is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:2:Transpose test on vector.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:3:Transpose test on rectangular matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:3:Transpose test on rectangular matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:3:Transpose test on rectangular matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:4:LU decomposition test 1.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:4:LU decomposition test 1 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:4:LU decomposition test 1.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:5:Matrix inverse test 1.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:5:Matrix inverse test 1 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:5:Matrix inverse test 1.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:6:2x2 matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:6:2x2 matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:6:2x2 matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:7:3x3 matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:7:3x3 matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:7:3x3 matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:8:4x4 matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:8:4x4 matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:8:4x4 matrix.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:9:Normalize test: Row vector.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:9:Normalize test: Row vector is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:9:Normalize test: Row vector.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:10:Normalize test: Column vector.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:10:Normalize test: Column vector is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:10:Normalize test: Column vector.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:11:Concat test 1.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:11:Concat test 1 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:11:Concat test 1.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:12:Concat test 2.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:12:Concat test 2 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:12:Concat test 2.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:13:Scale test.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:13:Scale test is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:13:Scale test.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:14:Operation test.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:14:Operation test is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:14:Operation test.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:15:Dot test 1.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:15:Dot test 1 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:15:Dot test 1.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:16:dot test 2.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:16:dot test 2 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:16:dot test 2.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Start test test suite for project:17:dot test 3.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:17:dot test 3 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: End test test suite for project:17:dot test 3.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: ==============
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Summary:
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:17:dot test 3 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:16:dot test 2 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:15:Dot test 1 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:14:Operation test is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:13:Scale test is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:12:Concat test 2 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:11:Concat test 1 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:10:Normalize test: Column vector is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:9:Normalize test: Row vector is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:8:4x4 matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:7:3x3 matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:6:2x2 matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:5:Matrix inverse test 1 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:4:LU decomposition test 1 is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:3:Transpose test on rectangular matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:2:Transpose test on vector is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:1:5x6 zero matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Test test suite for project:0:5x5 identity matrix is successful.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Ran: 18 tests in: 0.08 seconds.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Cases: 18.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Tried: 18.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Errors: 0.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Failures: 0.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Skip: 0.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Todo: 0.
+2021-03-29T08:53:59+00:00 DESKTOP-5F482P8#00 I: Timeout: 0.

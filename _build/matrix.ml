@@ -249,3 +249,19 @@ let op mat1 mat2 f =
   let m' = List.map2 (fun l1 l2 -> List.map2 (fun x y -> f x y) l1 l2) m1 m2 in
   { mat1 with matrix = m' }
 
+let dot vec1 vec2 =
+  if
+    (fst vec1.dimensions != 1 && snd vec1.dimensions != 1)
+    || (fst vec2.dimensions != 1 && snd vec2.dimensions != 1)
+  then raise InvalidDimensions
+  else
+    let v1 =
+      (if fst vec1.dimensions != 1 then transpose vec1 else vec1).matrix
+    in
+    let v2 =
+      (if fst vec2.dimensions != 1 then transpose vec2 else vec2).matrix
+    in
+    List.fold_left2
+      (fun acc l1 l2 ->
+        List.fold_left2 (fun acc x1 x2 -> acc +. (x1 *. x2)) 0.0 l1 l2)
+      0.0 v1 v2
