@@ -259,8 +259,10 @@ let pinv m =
   mult dot_inverse m'
 
 let op mat1 mat2 f =
-  if mat1.dimensions != mat2.dimensions then
-    raise (InvalidDimensions "Matrix dimensions do not match!")
+  if
+    fst mat1.dimensions != fst mat2.dimensions
+    || snd mat1.dimensions != snd mat2.dimensions
+  then raise (InvalidDimensions "Matrix dimensions do not match!")
   else
     let m1 = mat1.matrix in
     let m2 = mat2.matrix in

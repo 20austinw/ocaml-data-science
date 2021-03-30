@@ -259,10 +259,17 @@ let pinv m =
   mult dot_inverse m'
 
 let op mat1 mat2 f =
-  let m1 = mat1.matrix in
-  let m2 = mat2.matrix in
-  let m' = List.map2 (fun l1 l2 -> List.map2 (fun x y -> f x y) l1 l2) m1 m2 in
-  { mat1 with matrix = m' }
+  if
+    fst mat1.dimensions != fst mat2.dimensions
+    || snd mat1.dimensions != snd mat2.dimensions
+  then raise (InvalidDimensions "Matrix dimensions do not match!")
+  else
+    let m1 = mat1.matrix in
+    let m2 = mat2.matrix in
+    let m' =
+      List.map2 (fun l1 l2 -> List.map2 (fun x y -> f x y) l1 l2) m1 m2
+    in
+    { mat1 with matrix = m' }
 
 let dot vec1 vec2 =
   if
