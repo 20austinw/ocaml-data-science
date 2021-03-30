@@ -1,6 +1,6 @@
 type t
 
-exception InvalidDimensions
+exception InvalidDimensions of string
 
 val dim : t -> int * int
 (** [dim m] returns the dimensions of matrix t *)
@@ -72,6 +72,6 @@ val op : t -> t -> (float -> float -> float) -> t
 (** [op m1 m2 f] applies the operator f to pair of elements in m1 m2 and
 returns [[f a1 b1; f a2 b2; ...]; [...]] *)
 
-val dot : t -> t -> float 
-(** [dot v1 v2] returns the dot product between two vectors
-Requires: v1 and v2 be two one-dimentional matrices *)
+val dot : t -> t -> float
+(** [dot v1 v2] returns the dot product between two vectors. If 
+v1 and v2 are two dimensional matrices instead, performs [mult v1 v2]*)

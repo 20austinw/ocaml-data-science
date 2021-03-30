@@ -1,6 +1,6 @@
 type t
 
-exception InvalidDimensions
+exception InvalidDimensions of string
 
 val dim : t -> int * int
 (** [dim m] returns the dimensions of matrix t *)

@@ -1,6 +1,6 @@
 type t = { dimensions : int * int; matrix : float list list }
 
-exception InvalidDimensions
+exception InvalidDimensions of string
 
 let dim m = m.dimensions
 
@@ -34,7 +34,8 @@ let transpose m =
   }
 
 let mult m1 m2 =
-  if snd m1.dimensions != fst m2.dimensions then raise InvalidDimensions
+  if snd m1.dimensions != fst m2.dimensions then
+    raise (InvalidDimensions "Dimensions do not match!")
   else
     let product v1 v2 =
       List.fold_left ( +. ) 0.0 (List.map2 (fun x1 x2 -> x1 *. x2) v1 v2)
@@ -88,7 +89,10 @@ let construct lst =
     | [] -> lst
     | [ h ] -> lst
     | a :: b :: c ->
-        if List.length a != List.length b then raise InvalidDimensions
+        if List.length a != List.length b then
+          raise
+            (InvalidDimensions
+               "Please ensure that the rows are of the same length!")
         else check (b :: c)
   in
   {
@@ -141,7 +145,8 @@ let concat mat1 mat2 =
   helper m1 m2 []
 
 let invert mat =
-  if fst mat.dimensions != snd mat.dimensions then raise InvalidDimensions
+  if fst mat.dimensions != snd mat.dimensions then
+    raise (InvalidDimensions "Matrix is not square!")
   else
     let n = fst mat.dimensions in
     let id = eye n in
@@ -161,7 +166,8 @@ let scale mat c =
   { mat with matrix = List.map (fun x -> List.map (fun x -> c *. x) x) m }
 
 let rec det mat =
-  if fst mat.dimensions != snd mat.dimensions then raise InvalidDimensions
+  if fst mat.dimensions != snd mat.dimensions then
+    raise (InvalidDimensions "Matrix is not square!")
   else
     let m = to_array mat.matrix in
     let n = fst mat.dimensions in
@@ -186,7 +192,7 @@ let rec det mat =
 
 let magnitude mat =
   if fst mat.dimensions != 1 && snd mat.dimensions != 1 then
-    raise InvalidDimensions
+    raise (InvalidDimensions "Please ensure that matrix is a vector!")
   else
     let m =
       if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
@@ -253,7 +259,7 @@ let dot vec1 vec2 =
   if
     (fst vec1.dimensions != 1 && snd vec1.dimensions != 1)
     || (fst vec2.dimensions != 1 && snd vec2.dimensions != 1)
-  then raise InvalidDimensions
+  then raise (InvalidDimensions "Please use [mult] for matrix multiplication!")
   else
     let v1 =
       (if fst vec1.dimensions != 1 then transpose vec1 else vec1).matrix
