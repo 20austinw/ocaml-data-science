@@ -25,9 +25,7 @@ let compute_gradient theta x y =
   let m = x |> matrix |> List.length in
   let predictions = h x theta |> transpose in
   let gradient =
-    scale
-      (mult (transpose x) (op predictions y ( -. )))
-      (1. /. float_of_int m)
+    scale (mult (transpose x) (op predictions y ( -. ))) (1. /. float_of_int m)
   in
   gradient
 
