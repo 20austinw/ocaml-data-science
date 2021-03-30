@@ -101,48 +101,54 @@ let construct lst =
   }
 
 let lu_decomp mat =
-  let n = fst mat.dimensions in
-  let m = mat.matrix |> to_array in
-  let l = (zero n n).matrix |> to_array in
-  let u = (zero n n).matrix |> to_array in
-  for i = 0 to pred n do
-    for k = i to pred n do
-      let sum = ref 0.0 in
-      for j = 0 to pred i do
-        sum := !sum +. (l.(i).(j) *. u.(j).(k))
-      done;
-      u.(i).(k) <- m.(i).(k) -. !sum
-    done;
-    for k = i to pred n do
-      if i = k then l.(i).(i) <- 1.0
-      else
+  if fst mat.dimensions != snd mat.dimensions then
+    raise (InvalidDimensions "Matrix is not square!")
+  else
+    let n = fst mat.dimensions in
+    let m = mat.matrix |> to_array in
+    let l = (zero n n).matrix |> to_array in
+    let u = (zero n n).matrix |> to_array in
+    for i = 0 to pred n do
+      for k = i to pred n do
         let sum = ref 0.0 in
         for j = 0 to pred i do
-          sum := !sum +. (l.(k).(j) *. u.(j).(i))
+          sum := !sum +. (l.(i).(j) *. u.(j).(k))
         done;
-        l.(k).(i) <- (m.(k).(i) -. !sum) /. u.(i).(i)
-    done
-  done;
-  ( { dimensions = (n, n); matrix = l |> to_list },
-    { dimensions = (n, n); matrix = u |> to_list } )
+        u.(i).(k) <- m.(i).(k) -. !sum
+      done;
+      for k = i to pred n do
+        if i = k then l.(i).(i) <- 1.0
+        else
+          let sum = ref 0.0 in
+          for j = 0 to pred i do
+            sum := !sum +. (l.(k).(j) *. u.(j).(i))
+          done;
+          l.(k).(i) <- (m.(k).(i) -. !sum) /. u.(i).(i)
+      done
+    done;
+    ( { dimensions = (n, n); matrix = l |> to_list },
+      { dimensions = (n, n); matrix = u |> to_list } )
 
 let concat mat1 mat2 =
-  let m1 = mat1.matrix in
-  let m2 = mat2.matrix in
-  let rec helper m1 m2 acc =
-    match m1 with
-    | [] ->
-        {
-          dimensions =
-            (fst mat1.dimensions, snd mat1.dimensions + snd mat2.dimensions);
-          matrix = acc;
-        }
-    | h :: t -> (
-        match m2 with
-        | [] -> assert false
-        | x :: xs -> helper t xs (acc @ [ h @ x ]))
-  in
-  helper m1 m2 []
+  if fst mat1.dimensions != fst mat2.dimensions then
+    raise (InvalidDimensions "Number of rows do not match!")
+  else
+    let m1 = mat1.matrix in
+    let m2 = mat2.matrix in
+    let rec helper m1 m2 acc =
+      match m1 with
+      | [] ->
+          {
+            dimensions =
+              (fst mat1.dimensions, snd mat1.dimensions + snd mat2.dimensions);
+            matrix = acc;
+          }
+      | h :: t -> (
+          match m2 with
+          | [] -> assert false
+          | x :: xs -> helper t xs (acc @ [ h @ x ]))
+    in
+    helper m1 m2 []
 
 let invert mat =
   if fst mat.dimensions != snd mat.dimensions then
@@ -190,12 +196,12 @@ let rec det mat =
       done;
       !sum
 
-let magnitude mat =
-  if fst mat.dimensions != 1 && snd mat.dimensions != 1 then
+let magnitude vec =
+  if fst vec.dimensions != 1 && snd vec.dimensions != 1 then
     raise (InvalidDimensions "Please ensure that matrix is a vector!")
   else
     let m =
-      if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
+      if snd vec.dimensions = 1 then vec |> transpose |> matrix else vec.matrix
     in
     match m with
     | [] -> assert false
@@ -223,22 +229,25 @@ let normalize mat =
 
 (* Source: https://www.cs.cornell.edu/~bindel/class/cs6210-f09/lec26.pdf *)
 let eigen mat dom =
-  let m = if dom = true then mat else invert mat in
-  let n = snd mat.dimensions in
-  let b_k =
-    {
-      dimensions = (1, n);
-      matrix = [ List.init n (fun x -> Random.float 1.0) ];
-    }
-    |> transpose
-  in
-  let rec power_iteration b_k n =
-    let b_k1 = mult m b_k in
-    let b_k1_norm = normalize b_k1 in
-    if n = 0 then (magnitude b_k1, b_k1_norm)
-    else power_iteration b_k1_norm (n - 1)
-  in
-  power_iteration b_k 1000
+  if fst mat.dimensions != snd mat.dimensions then
+    raise (InvalidDimensions "Matrix is not square!")
+  else
+    let m = if dom = true then mat else invert mat in
+    let n = fst mat.dimensions in
+    let b_k =
+      {
+        dimensions = (1, n);
+        matrix = [ List.init n (fun x -> Random.float 1.0) ];
+      }
+      |> transpose
+    in
+    let rec power_iteration b_k n =
+      let b_k1 = mult m b_k in
+      let b_k1_norm = normalize b_k1 in
+      if n = 0 then (magnitude b_k1, b_k1_norm)
+      else power_iteration b_k1_norm (n - 1)
+    in
+    power_iteration b_k 1000
 
 let elem_pow mat r =
   let m = mat.matrix in
