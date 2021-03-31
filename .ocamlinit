@@ -3,5 +3,5 @@
 #directory "_build";;
 #load "matrix.cmo";;
 #load "dataframe.cmo";;
-#load "regression.cmo";;
+#load "polynomial_regression.cmo";;
 #load "statistics.cmo";;

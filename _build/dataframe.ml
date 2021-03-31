@@ -1,4 +1,7 @@
-type dataframe = { header : string list; data : string list list }
+type dataframe = {
+  header : string list;
+  data : string list list;
+}
 
 let loadfile file_name =
   let x = file_name |> Csv.load |> Csv.trim |> Csv.square in
@@ -26,7 +29,9 @@ let get_encodings string_lst =
 
 let encode string_lst =
   let pairs = get_encodings string_lst in
-  let lowercase_lst = List.map (fun x -> String.lowercase_ascii x) string_lst in
+  let lowercase_lst =
+    List.map (fun x -> String.lowercase_ascii x) string_lst
+  in
   List.map (fun x -> List.assoc x pairs) lowercase_lst
 
 let string_to_float lst_of_str_lst =
@@ -54,8 +59,26 @@ let rec find_index x lst =
 let indices_from_col_lst df col_lst =
   List.map (fun x -> find_index x df.header) col_lst
 
+let rename_cols_helper df indices updated_lst =
+  let u_header =
+    List.mapi
+      (fun i x ->
+        if List.mem i indices then List.nth updated_lst i else x)
+      df.header
+  in
+  { df with header = u_header }
+
+let rename_cols df col_lst updated_lst =
+  let indices = List.map (fun x -> find_index x df.header) col_lst in
+  rename_cols_helper df indices updated_lst
+
+let rename_cols_i df indices updated_lst =
+  rename_cols_helper df indices updated_lst
+
 let select_cols_helper df indices =
-  let u_header = List.filteri (fun i x -> List.mem i indices) df.header in
+  let u_header =
+    List.filteri (fun i x -> List.mem i indices) df.header
+  in
   let u_data = List.filteri (fun i x -> List.mem i indices) df.data in
   { header = u_header; data = u_data }
 
@@ -72,7 +95,9 @@ let filter_helper df index f =
     |> List.filter (fun x -> x <> -1)
   in
   let u_data =
-    List.map (fun x -> List.filteri (fun i y -> List.mem i indices) x) df.data
+    List.map
+      (fun x -> List.filteri (fun i y -> List.mem i indices) x)
+      df.data
   in
   { df with data = u_data }
 
@@ -84,18 +109,13 @@ let filter_i df index f = filter_helper df index f
 
 let update_helper df index f new_value =
   let column = List.nth df.data index in
-  let indices =
-    List.mapi (fun i x -> if f x then i else -1) column
-    |> List.filter (fun x -> x <> -1)
-  in
+  let u_col = List.map (fun x -> if f x then new_value else x) column in
   let u_data =
-    List.map
-      (fun x -> List.filteri (fun i y -> List.mem i indices) new_value)
-      df.data
+    List.mapi (fun i x -> if i = index then u_col else x) df.data
   in
   { df with data = u_data }
 
-let udpate df col f new_value =
+let update df col f new_value =
   let index = find_index col df.header in
   update_helper df index f new_value
 
@@ -105,7 +125,9 @@ let get_x_y df x_lst y =
   let u_df = pre_process df in
   let x = (select_cols u_df x_lst).data in
   let index = find_index y u_df.header in
-  let y = List.map (fun x -> float_of_string x) (List.nth u_df.data index) in
+  let y =
+    List.map (fun x -> float_of_string x) (List.nth u_df.data index)
+  in
   (x, y)
 
 let train_test_split df x y test_percent =
@@ -114,8 +136,8 @@ let train_test_split df x y test_percent =
   else
     let split_i =
       int_of_float
-        (float_of_int (List.length y)
-        -. (float_of_int (List.length y) /. (1. /. test_percent)))
+        ( float_of_int (List.length y)
+        -. (float_of_int (List.length y) /. (1. /. test_percent)) )
     in
 
     let x_as_rows = Csv.transpose x in
@@ -137,18 +159,19 @@ let train_test_split df x y test_percent =
 let split_with_cross_val df x y test_percent cross_percent =
   let x, y = get_x_y df x y in
   if cross_percent +. test_percent >= 1. then
-    failwith "Make sure test_percent and cross_percent amount to less than 1"
+    failwith
+      "Make sure test_percent and cross_percent amount to less than 1"
   else
     let split_cr =
       int_of_float
-        (float_of_int (List.length y)
+        ( float_of_int (List.length y)
         -. float_of_int (List.length y)
-           /. (1. /. (cross_percent +. test_percent)))
+           /. (1. /. (cross_percent +. test_percent)) )
     in
     let split_test =
       int_of_float
-        (float_of_int (List.length y)
-        -. (float_of_int (List.length y) /. (1. /. test_percent)))
+        ( float_of_int (List.length y)
+        -. (float_of_int (List.length y) /. (1. /. test_percent)) )
     in
 
     let x_as_rows = Csv.transpose x in

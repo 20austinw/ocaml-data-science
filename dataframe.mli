@@ -20,12 +20,6 @@ val filter : dataframe -> string -> (string -> bool) -> dataframe
 
 val filter_i : dataframe -> int -> (string -> bool) -> dataframe 
 
-val udpate : 
-  dataframe -> string -> (string -> bool) -> string list -> dataframe
-
-val update_i :
-  dataframe -> int -> (string -> bool) -> string list -> dataframe
-
 val train_test_split :
   dataframe -> string list -> string ->
   float -> float list list * float list list * float list * float list
