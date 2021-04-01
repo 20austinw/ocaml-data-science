@@ -15,7 +15,7 @@ test:
 	$(OCAMLBUILD) -tag 'debug' $(TEST) && ./$(TEST) -runner sequential
 
 zip: 
-	zip data-science.zip *.ml* *.json *.sh _tags .merlin .ocamlformat .ocamlinit LICENSE Makefile	
+	zip data-science.zip *.ml* *.json *.sh _tags *.ipynb .merlin .ocamlformat .ocamlinit LICENSE Makefile 
 
 docs: docs-public docs-private
 	
