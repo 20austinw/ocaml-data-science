@@ -136,8 +136,8 @@ let train_test_split df x y test_percent =
   else
     let split_i =
       int_of_float
-        ( float_of_int (List.length y)
-        -. (float_of_int (List.length y) /. (1. /. test_percent)) )
+        (float_of_int (List.length y)
+        -. (float_of_int (List.length y) /. (1. /. test_percent)))
     in
 
     let x_as_rows = Csv.transpose x in
@@ -164,14 +164,14 @@ let split_with_cross_val df x y test_percent cross_percent =
   else
     let split_cr =
       int_of_float
-        ( float_of_int (List.length y)
+        (float_of_int (List.length y)
         -. float_of_int (List.length y)
-           /. (1. /. (cross_percent +. test_percent)) )
+           /. (1. /. (cross_percent +. test_percent)))
     in
     let split_test =
       int_of_float
-        ( float_of_int (List.length y)
-        -. (float_of_int (List.length y) /. (1. /. test_percent)) )
+        (float_of_int (List.length y)
+        -. (float_of_int (List.length y) /. (1. /. test_percent)))
     in
 
     let x_as_rows = Csv.transpose x in
