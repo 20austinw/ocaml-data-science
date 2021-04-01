@@ -287,3 +287,7 @@ let dot vec1 vec2 =
       (fun acc l1 l2 ->
         List.fold_left2 (fun acc x1 x2 -> acc +. (x1 *. x2)) 0.0 l1 l2)
       0.0 v1 v2
+
+let elem_f mat f =
+  let m = mat.matrix in
+  { mat with matrix = List.map (fun lst -> List.map (fun x -> f x) lst) m }

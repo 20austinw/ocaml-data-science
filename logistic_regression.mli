@@ -1,4 +1,4 @@
-val fit : Matrix.t -> Matrix.t -> Matrix.t
+val fit : Matrix.t -> Matrix.t -> float -> Matrix.t
 (** [fit x y] takes in a column vector of x and a column vector of y
 and returns the weights as a column vector *)
 

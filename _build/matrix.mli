@@ -75,3 +75,5 @@ returns [[f a1 b1; f a2 b2; ...]; [...]] *)
 val dot : t -> t -> float
 (** [dot v1 v2] returns the dot product between two vectors. If 
 v1 and v2 are two dimensional matrices instead, performs [mult v1 v2]*)
+
+val elem_f : t -> (float -> float) -> t
