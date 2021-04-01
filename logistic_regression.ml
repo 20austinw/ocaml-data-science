@@ -6,7 +6,7 @@ let e = 2.7182818284590452353602874713527
 
 let sigmoid z = 1. /. (1. +. (e ** (-1. *. z)))
 
-let num_iter = ref 100
+let num_iter = ref 1000
 
 let alpha = ref 0.1
 
@@ -25,7 +25,9 @@ let compute_gradient theta x y =
   let m = x |> matrix |> List.length in
   let predictions = h x theta |> transpose in
   let gradient =
-    scale (mult (transpose x) (op predictions y ( -. ))) (1. /. float_of_int m)
+    scale
+      (mult (transpose x) (op predictions y ( -. )))
+      (1. /. float_of_int m)
   in
   gradient
 
@@ -41,6 +43,6 @@ let fit x y =
       fit_iter (i + 1))
   in
   fit_iter 0;
-  theta
+  !theta
 
 let predict x = h x !theta
