@@ -1,16 +1,19 @@
-open OUnit2
 open Matrix
 open Statistics
+open OUnit2
 
 let comp_matrix mat1 mat2 =
   assert_equal (dim mat1) (dim mat2);
   let m1 = matrix mat1 and m2 = matrix mat2 in
   List.iter2
     (fun l1 l2 ->
-      List.iter2 (fun x1 x2 -> assert (abs_float (x1 -. x2) < 0.0001)) l1 l2)
+      List.iter2
+        (fun x1 x2 -> assert (abs_float (x1 -. x2) < 0.0001))
+        l1 l2)
     m1 m2
 
-let eye_test name n res = name >:: fun ctxt -> assert_equal res (eye n |> matrix)
+let eye_test name n res =
+  name >:: fun ctxt -> assert_equal res (eye n |> matrix)
 
 let zero_test name m n res =
   name >:: fun ctxt -> assert_equal res (zero m n |> matrix)
@@ -19,7 +22,9 @@ let transpose_test name m res =
   name >:: fun ctxt ->
   let mat = m |> construct |> transpose in
   assert_equal res (mat |> matrix);
-  assert_equal (List.length res, res |> List.hd |> List.length) (dim mat)
+  assert_equal
+    (List.length res, res |> List.hd |> List.length)
+    (dim mat)
 
 let lu_decomp_test name m res =
   name >:: fun ctxt ->
@@ -28,13 +33,15 @@ let lu_decomp_test name m res =
      (matrix (fst x), matrix (snd x)))
 
 let invert_test name m res =
-  name >:: fun ctxt -> comp_matrix (res |> construct) (m |> construct |> invert)
+  name >:: fun ctxt ->
+  comp_matrix (res |> construct) (m |> construct |> invert)
 
 let det_test name m res =
   name >:: fun ctxt -> assert_equal res (m |> construct |> det)
 
 let normalize_test name m res =
-  name >:: fun ctxt -> assert_equal res (m |> construct |> normalize |> matrix)
+  name >:: fun ctxt ->
+  assert_equal res (m |> construct |> normalize |> matrix)
 
 let concat_test name m1 m2 res =
   name >:: fun ctxt ->
@@ -48,10 +55,12 @@ let op_test name m1 m2 f res =
   comp_matrix (res |> construct) (op (construct m1) (construct m2) f)
 
 let dot name v1 v2 res =
-  name >:: fun ctxt -> assert_equal res (dot (construct v1) (construct v2))
+  name >:: fun ctxt ->
+  assert_equal res (dot (construct v1) (construct v2))
 
 let elem_f_test name m f res =
-  name >:: fun ctxt -> assert_equal res (elem_f (construct m) f |> matrix)
+  name >:: fun ctxt ->
+  assert_equal res (elem_f (construct m) f |> matrix)
 
 let matrix_tests =
   [
@@ -79,7 +88,8 @@ let matrix_tests =
     lu_decomp_test "LU decomposition test 1"
       [ [ 2.0; -1.0; -2.0 ]; [ -4.0; 6.0; 3.0 ]; [ -4.0; -2.0; 8.0 ] ]
       ( [ [ 1.0; 0.0; 0.0 ]; [ -2.0; 1.0; 0.0 ]; [ -2.0; -1.0; 1.0 ] ],
-        [ [ 2.0; -1.0; -2.0 ]; [ 0.0; 4.0; -1.0 ]; [ 0.0; 0.0; 3.0 ] ] );
+        [ [ 2.0; -1.0; -2.0 ]; [ 0.0; 4.0; -1.0 ]; [ 0.0; 0.0; 3.0 ] ]
+      );
     invert_test "Matrix inverse test 1"
       [ [ 3.0; 0.0; 2.0 ]; [ 2.0; 0.0; -2.0 ]; [ 0.0; 1.0; 1.0 ] ]
       [ [ 0.2; 0.2; 0. ]; [ -0.2; 0.3; 1. ]; [ 0.2; -0.3; 0. ] ];
@@ -99,12 +109,15 @@ let matrix_tests =
      normalize_test "Normalize test: Row vector" [ [ 1.; 2.; 3. ] ]
        [ [ 1. /. m; 2. /. m; 3. /. m ] ]);
     (let m = [ [ 1. ]; [ 2. ]; [ 3. ] ] |> construct |> magnitude in
-     normalize_test "Normalize test: Column vector" [ [ 1. ]; [ 2. ]; [ 3. ] ]
+     normalize_test "Normalize test: Column vector"
+       [ [ 1. ]; [ 2. ]; [ 3. ] ]
        [ [ 1. /. m ]; [ 2. /. m ]; [ 3. /. m ] ]);
-    concat_test "Concat test 1" [ [ 1. ]; [ 2. ]; [ 3. ] ]
+    concat_test "Concat test 1"
+      [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1.; 1. ]; [ 2.; 2. ]; [ 3.; 3. ] ];
-    concat_test "Concat test 2" [ [ 1. ]; [ 2. ]; [ 3. ] ]
+    concat_test "Concat test 2"
+      [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1.; 1. ]; [ 2.; 2. ]; [ 3.; 3. ] ]
       [ [ 1.; 1.; 1. ]; [ 2.; 2.; 2. ]; [ 3.; 3.; 3. ] ];
     scale_test "Scale test"
@@ -129,6 +142,51 @@ let matrix_tests =
       [ [ 2.; 2.; 2. ]; [ 2.; 2.; 2. ]; [ 2.; 2.; 2. ] ];
   ]
 
-let suite = "test suite for project" >::: List.flatten [ matrix_tests ]
+let stats_test name exp out =
+  name >:: fun _ -> assert_equal exp out ~printer:string_of_float
+
+let big_float_lst lo hi =
+  let rec loop lo hi acc =
+    if lo > hi then acc else loop (lo +. 1.) hi (lo :: acc)
+  in
+  List.rev (loop lo hi [])
+
+let basic_lst = [ 1. ]
+
+let med_lst = [ 1.4; 5.2; 20.10; 6.32; 50.13; 232.45 ]
+
+let big_lst = big_float_lst 1. 100.
+
+let statistics_tests =
+  [
+    stats_test "basic list sum test" 1. (sum basic_lst);
+    stats_test "med list sum test" 315.6 (sum med_lst);
+    stats_test "big list sum test" 5050. (sum big_lst);
+    stats_test "basic list mean test" 1. (mean basic_lst);
+    stats_test "med list mean test" 52.6 (mean med_lst);
+    stats_test "big list mean test" 50.5 (mean big_lst);
+    stats_test "basic list median test" 1. (median basic_lst);
+    stats_test "med list median test" 13.21 (median med_lst);
+    stats_test "big list median test" 50.5 (median big_lst);
+    stats_test "basic list q1 test" 1. (q1 basic_lst);
+    stats_test "med list q1 test" 5.48 (q1 med_lst);
+    stats_test "big list q1 test" 25.75 (q1 big_lst);
+    stats_test "basic list q3 test" 1. (q1 basic_lst);
+    stats_test "med list q3 test" 42.6225 (q3 med_lst);
+    stats_test "big list q3 test" 75.25 (q3 big_lst);
+    stats_test "basic list var test" 0. (var basic_lst);
+    stats_test "med list var test" 6736. (Float.round (var med_lst));
+    stats_test "big list var test" 833. (Float.round (var big_lst));
+    stats_test "basic list std test" 0. (std basic_lst);
+    stats_test "med list std test" 82. (Float.round (std med_lst));
+    stats_test "big list std test" 29. (Float.round (std big_lst));
+    stats_test "basic list 30th perc test" 1. (percentile basic_lst 30.);
+    stats_test "med list 30th perc test" 5.76 (percentile med_lst 30.);
+    stats_test "big list 30th perc test" 30.7 (percentile big_lst 30.);
+  ]
+
+let suite =
+  "test suite for project"
+  >::: List.flatten [ matrix_tests; statistics_tests ]
 
 let _ = run_test_tt_main suite
