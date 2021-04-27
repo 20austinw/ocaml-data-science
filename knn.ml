@@ -31,7 +31,6 @@ let arg_sort lst num =
   let arg_lst = fst (List.split sorted_tuple) in
   List.filteri (fun i elt -> i < num) arg_lst
 
-(* x_train and x_test is list of float list, y_train *)
 let predict x_test x_train y_train =
   let y_pred = ref [] in
   List.iteri
