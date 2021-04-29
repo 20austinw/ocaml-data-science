@@ -144,12 +144,12 @@ let train_test_split df x y test_percent =
     let x_train =
       x_as_rows
       |> List.filteri (fun i x -> i <= split_i)
-      |> Csv.transpose |> string_to_float
+      |> string_to_float
     in
     let x_test =
       x_as_rows
       |> List.filteri (fun i x -> i > split_i)
-      |> Csv.transpose |> string_to_float
+      |> string_to_float
     in
 
     let y_train = List.filteri (fun i x -> i <= split_i) y in
@@ -178,17 +178,17 @@ let split_with_cross_val df x y test_percent cross_percent =
     let x_validation =
       x_as_rows
       |> List.filteri (fun i x -> i > split_cr && i <= split_test)
-      |> Csv.transpose |> string_to_float
+      |> string_to_float
     in
     let x_train =
       x_as_rows
       |> List.filteri (fun i x -> i <= split_cr)
-      |> Csv.transpose |> string_to_float
+      |> string_to_float
     in
     let x_test =
       x_as_rows
       |> List.filteri (fun i x -> i > split_test)
-      |> Csv.transpose |> string_to_float
+      |> string_to_float
     in
 
     let y_validation =
