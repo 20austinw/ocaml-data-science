@@ -1,5 +1,6 @@
 open Matrix
 open Statistics
+open Dataframe
 open OUnit2
 
 let comp_matrix mat1 mat2 =
@@ -185,6 +186,168 @@ let statistics_tests =
     stats_test "big list 30th perc test" 30.7 (percentile big_lst 30.);
   ]
 
+let init_df = {header = ["x1"; "y1"; "y2"; "y3"; "y4"];
+data =
+  [["10"; "8"; "13"; "9"; "11"; "14"; "6"; "4"; "12"];
+  ["8.04"; "6.95"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84"];
+  ["9.14"; "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13"];
+  ["7.46"; "6.77"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15"];
+  ["6.58"; "5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56"]]}
+
+let selected_many = {header = ["x1"; "y1"; "y2"; "y3"];
+data =
+  [["10"; "8"; "13"; "9"; "11"; "14"; "6"; "4"; "12"];
+  ["8.04"; "6.95"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84"];
+  ["9.14"; "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13"];
+  ["7.46"; "6.77"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15"]]}
+
+let selected_one = {header = ["x1"];
+data = [["10"; "8"; "13"; "9"; "11"; "14"; "6"; "4"; "12"]]}
+
+let selected_many_by_indices = {header = ["x1"; "y2"; "y3"];
+data =
+  [["10"; "8"; "13"; "9"; "11"; "14"; "6"; "4"; "12"];
+  ["9.14"; "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13"];
+  ["7.46"; "6.77"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15"]]}
+
+let selected_one_by_indices = {header = ["y1"];
+data =
+  [["8.04"; "6.95"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84"]]}
+
+let update_by_col = {header = ["x1"; "y1"; "y2"; "y3"; "y4"];
+data =
+  [["12"; "8"; "13"; "9"; "11"; "14"; "6"; "4"; "12"];
+  ["8.04"; "6.95"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84"];
+  ["9.14"; "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13"];
+  ["7.46"; "6.77"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15"];
+  ["6.58"; "5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56"]]}
+
+let update_by_index = {header = ["x1"; "y1"; "y2"; "y3"; "y4"];
+data =
+  [["10"; "8"; "13"; "9"; "11"; "14"; "6"; "4"; "12"];
+  ["8.04"; "6.95"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84"];
+  ["9.14"; "12"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13"];
+  ["7.46"; "6.77"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15"];
+  ["6.58"; "5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56"]]}
+
+let filter_by_col = {header = ["x1"; "y1"; "y2"; "y3"; "y4"];
+data =
+  [["8"; "13"; "9"; "11"; "14"; "6"; "4"; "12"];
+  ["6.95"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84"];
+  ["8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13"];
+  ["6.77"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15"];
+  ["5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56"]]}
+
+let filter_by_col_2 = {header = ["x1"; "y1"; "y2"; "y3"; "y4"];
+data = [["10"]; ["8.04"]; ["9.14"]; ["7.46"]; ["6.58"]]}
+
+let filter_by_index = {header = ["x1"; "y1"; "y2"; "y3"; "y4"];
+data =
+  [["10"; "13"; "9"; "11"; "14"; "6"; "4"; "12"];
+  ["8.04"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84"];
+  ["9.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13"];
+  ["7.46"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15"];
+  ["6.58"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56"]]}
+
+let train_test_split_1 = 
+  ([[8.04; 9.14; 7.46]; [6.95; 8.14; 6.77]; [7.58; 8.74; 12.74];
+  [8.81; 8.77; 7.11]; [8.33; 9.26; 7.81]],
+  [[9.96; 8.1; 8.84]; [7.24; 6.13; 6.08]; [4.26; 3.1; 5.39];
+  [10.84; 9.13; 8.15]], [10.; 8.; 13.; 9.; 11.], [14.; 6.; 4.; 12.])
+
+let train_test_split_2 = 
+  ([[8.04; 9.14; 7.46]; [6.95; 8.14; 6.77]; [7.58; 8.74; 12.74];
+    [8.81; 8.77; 7.11]; [8.33; 9.26; 7.81]; [9.96; 8.1; 8.84];
+    [7.24; 6.13; 6.08]; [4.26; 3.1; 5.39]],
+    [[10.84; 9.13; 8.15]], [10.; 8.; 13.; 9.; 11.; 14.; 6.; 4.], [12.])
+
+let cross_val_split_1 = 
+  ([[8.04; 9.14; 7.46]; [6.95; 8.14; 6.77]; [7.58; 8.74; 12.74];
+    [8.81; 8.77; 7.11]; [8.33; 9.26; 7.81]; [9.96; 8.1; 8.84];
+    [7.24; 6.13; 6.08]; [4.26; 3.1; 5.39]],
+    [[10.84; 9.13; 8.15]], [], [10.; 8.; 13.; 9.; 11.; 14.; 6.; 4.], [12.],
+    [])
+  
+let cross_val_split_2 = 
+  ([[8.04; 9.14; 7.46]; [6.95; 8.14; 6.77]; [7.58; 8.74; 12.74];
+    [8.81; 8.77; 7.11]; [8.33; 9.26; 7.81]; [9.96; 8.1; 8.84]],
+    [[7.24; 6.13; 6.08]; [4.26; 3.1; 5.39]], [[10.84; 9.13; 8.15]],
+    [10.; 8.; 13.; 9.; 11.; 14.], [6.; 4.], [12.])
+
+let load_test name file res =
+  name >:: fun ctxt ->
+  assert_equal res (loadfile file)
+
+let selected_many_test name df cols_lst res =
+  name >:: fun ctxt ->
+  assert_equal res (select_cols df cols_lst)
+
+let selected_one_test name df col res =
+  name >:: fun ctxt ->
+  assert_equal res (select_cols df (col :: []))
+
+let selected_many_by_indices_test name df indices_lst res =
+  name >:: fun ctxt ->
+  assert_equal res (select_cols_i df indices_lst)
+
+let selected_one_by_indices_test name df idx res =
+  name >:: fun ctxt ->
+  assert_equal res (select_cols_i df (idx :: []))
+
+let update_by_col_test name df col f update_to res =
+  name >:: fun ctxt ->
+  assert_equal res (update df col f update_to)
+
+let update_by_col_i_test name df col_index f update_to res =
+  name >:: fun ctxt ->
+  assert_equal res (update_i df col_index f update_to)
+
+let filter_by_col_test name df col f res = 
+  name >:: fun ctxt -> 
+  assert_equal res (filter df col f)
+
+let filter_by_col_i_test name df col_index f res = 
+  name >:: fun ctxt -> 
+  assert_equal res (filter_i df col_index f)
+
+let train_test_split_test name df x_lst y test_percent res = 
+  name >:: fun ctxt -> 
+  assert_equal res (train_test_split df x_lst y test_percent)
+
+let cross_val_split_test name df x_lst y test_p cross_p res = 
+  name >:: fun ctxt -> 
+  assert_equal res (split_with_cross_val df x_lst y test_p cross_p)
+
+  let dataframe_tests = [
+    load_test "loading files" "quartet.csv" init_df;
+    selected_many_test "selecting many cols by name" 
+      init_df ["x1"; "y1"; "y2"; "y3"] selected_many;
+    selected_one_test "selecting one column by name" 
+      init_df "x1" selected_one;
+    selected_many_by_indices_test "selecting many columns using indices"
+      init_df [0; 2; 3] selected_many_by_indices;
+    selected_one_by_indices_test "selecting one column using its index"
+      init_df 1 selected_one_by_indices;
+    update_by_col_test "updating a column by name"
+      init_df "x1" (fun x -> x = "10") "12" update_by_col;
+    update_by_col_i_test "updating a column by its index"
+      init_df 2 (fun x -> x = "8.14") "12" update_by_index;
+    filter_by_col_test "filtering a column using unequal condition"
+      init_df "x1" (fun x -> x <> "10") filter_by_col;
+    filter_by_col_test "filtering a column using equal condition"
+      init_df "x1" (fun x -> x = "10") filter_by_col_2;
+    filter_by_col_i_test "filtering a column using its index instead of name"
+      init_df 2 (fun x -> x <> "8.14") filter_by_index;
+    train_test_split_test "train test split 1"
+      init_df ["y1"; "y2"; "y3"] "x1" 0.5 train_test_split_1;
+    train_test_split_test "train test split 2"
+      init_df ["y1"; "y2"; "y3"] "x1" 0.2 train_test_split_2;
+    cross_val_split_test "cross val split test 1"
+      init_df ["y1"; "y2"; "y3"] "x1" 0.1 0.1 cross_val_split_1;
+    cross_val_split_test "cross val split test 2"
+      init_df ["y1"; "y2"; "y3"] "x1" 0.2 0.2 cross_val_split_2;
+  ]
+  
 let suite =
   "test suite for project"
   >::: List.flatten [ matrix_tests; statistics_tests ]

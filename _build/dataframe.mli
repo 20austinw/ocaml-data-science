@@ -16,6 +16,10 @@ val select_cols : dataframe -> string list -> dataframe
 
 val select_cols_i : dataframe -> int list -> dataframe
 
+val update: dataframe -> string -> (string -> bool) -> string -> dataframe
+
+val update_i : dataframe -> int -> (string -> bool) -> string -> dataframe
+
 val filter : dataframe -> string -> (string -> bool) -> dataframe
 
 val filter_i : dataframe -> int -> (string -> bool) -> dataframe 
