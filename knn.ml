@@ -1,6 +1,8 @@
 let k = ref 5
 
-let set_k new_k = k := new_k
+let set_k new_k =
+  k := new_k;
+  !k
 
 (* Return the most common class among the neighbor samples *)
 let vote labels =
