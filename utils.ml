@@ -1,14 +1,3 @@
-let entropy_for_label y label = 
-  let log2 x = (Float.log x) /. (Float.log 2.) in
-  let count = List.length (List.filter (fun x -> x = label) y) in 
-  let p = float_of_int (count / (List.length y)) in 
-  -1. *. p *. log2 p
-
-let calculate_entropy y = 
-  let unique_labels = List.sort_uniq compare y in
-  List.map (fun label -> entropy_for_label y label) unique_labels 
-  |> Statistics.sum
-
 let diff l1 l2 = 
   try 
     List.mapi (fun i x -> List.nth l1 i -. List.nth l2 i) l1 
@@ -31,13 +20,4 @@ let accuracy y_true y_pred =
       |> List.length in 
     num_of_same_values / List.length y_true
   with _ -> failwith "List lengths do not match"
-  
-let normalize x = ()
-
-let nominal_of_one_hot x = ()
-let turn_vector_to_diagonal_matrix x = ()
-
-(* Utils specific to SVMs: *)
-let linear_kernel = ()
-let polynomial_kernel power coef = ()
-let rbf_kernel gamma = ()
+ 

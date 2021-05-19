@@ -3,13 +3,13 @@ type t
 exception InvalidDimensions of string
 
 val dim : t -> int * int
-(** [dim m] returns the dimensions of matrix t *)
+(** [dim m] returns the dimensions of matrix m *)
 
 val matrix : t -> float list list
-(** [matrix t] returns the matrix within t *)
+(** [matrix m] returns the the float list list representation of matrix m*)
 
 val fill : int -> int -> float -> t
-(** [fill mat] returns a m x n matrix of type t filled with float x *)
+(** [fill mat] returns a m x n matrix filled with float x *)
 
 val zero : int -> int -> t
 (** [empty m n] produces an m by n matrix of 0's *)
@@ -18,26 +18,24 @@ val eye : int -> t
 (** [eye n] produces an n by n identity matrix *)
 
 val transpose : t -> t
-(** [transpose t] transposes the matrix in t *)
+(** [transpose t] transposes the matrix*)
 
 val mult : t -> t -> t
-(** [mult t1 t2] produces a new matrix of the product of t1 and t2 *)
+(** [mult m1 m2] produces a new matrix of the product of m1 and m2 *)
 
 val rref : t -> t
-(** [echelon t] returns the reduced form of matrix m*)
+(** [echelon m] returns the reduced form of matrix m*)
 
 val construct : float list list -> t
-(** [construct m] takes in a float list list and returns of matrix of
-   type t and throws InvalidDimensions if rows are not of the same
-   length *)
+(** [construct m] takes in a float list list and returns matrix 
+and throws InvalidDimensions if rows are not of the same length *)
 
 val lu_decomp : t -> t * t
-(** [decomp m] takes in type t and produces a pair of type t containing
-   the LU decomposition of matrix in t *)
+(** [decomp m] produces a pair of matrices containing
+   the LU decomposition of matrix m*)
 
 val concat : t -> t -> t
-(** [concat m1 m2] takes in two matrices of type t and returns a
-   concatenated matrix of type t *)
+(** [concat m1 m2] concatenates m1 and m2 and returns the resulting matrix*)
 
 val invert : t -> t
 (** [invert m] takes in a matrix of type t and returns the inverse *)
@@ -77,3 +75,5 @@ val dot : t -> t -> float
 v1 and v2 are two dimensional matrices instead, performs [mult v1 v2]*)
 
 val elem_f : t -> (float -> float) -> t
+(** [elem_f m f] applies the element-wise function f to matrix m
+and returns the resulting matrix *)
