@@ -3,6 +3,7 @@ OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
 TEST=test.byte
+CLI=cli.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind
 
 default: build
@@ -13,6 +14,9 @@ build:
 
 test:
 	$(OCAMLBUILD) -tag 'debug' $(TEST) && ./$(TEST) -runner sequential
+
+cli:
+	$(OCAMLBUILD) -tag 'debug' $(CLI) && OCAMLRUNPARAM=b ./$(CLI)
 
 zip: 
 	zip data-science.zip *.ml* *.json *.sh _tags *.ipynb .merlin .ocamlformat .ocamlinit LICENSE Makefile 
