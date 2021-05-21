@@ -26,21 +26,20 @@
 <tr><td><a href="Matrix.html#VALconcat">concat</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
 <p><code class="code">concat m1 m2</code> concatenates m1 and m2 and returns the resulting
-    matrix</p>
+    matrix <code class="code">m1 m2</code></p>
 
 </div>
 </td></tr>
 <tr><td><a href="Matrix.html#VALconstruct">construct</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">construct m</code> takes in a float list list and returns matrix and
-    throws InvalidDimensions if rows are not of the same length</p>
+<p><code class="code">construct m</code> takes in a float list list m and returns matrix.</p>
 
 </div>
 </td></tr>
 <tr><td align="left"><div>D</div></td></tr>
 <tr><td><a href="Matrix.html#VALdet">det</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">det m</code> takes in a matrix of type t and returns its determinant</p>
+<p><code class="code">det m</code> returns the determinant of matrix m</p>
 
 </div>
 </td></tr>
@@ -59,8 +58,8 @@
 <tr><td align="left"><div>E</div></td></tr>
 <tr><td><a href="Matrix.html#VALeigen">eigen</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">eigen mat dom</code> takes in a matrix of type t and returns a pair float
- t containing the eigenvector and its associated eigenvalue.</p>
+<p><code class="code">eigen mat dom</code> returns a pair float * t containing the eigenvector and its 
+associated eigenvalue.</p>
 
 </div>
 </td></tr>
@@ -73,8 +72,8 @@
 </td></tr>
 <tr><td><a href="Matrix.html#VALelem_pow">elem_pow</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">elem_pow mat r</code> takes in a matrix of type t and performs
-    element-wise power to the matrix</p>
+<p><code class="code">elem_pow m r</code> raises each entry of m to the power of r and returns the 
+resulting matrix.</p>
 
 </div>
 </td></tr>
@@ -82,14 +81,14 @@
 <td></td></tr>
 <tr><td><a href="Matrix.html#VALeye">eye</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">eye n</code> produces an n by n identity matrix</p>
+<p><code class="code">eye n</code> produces an n x n identity matrix</p>
 
 </div>
 </td></tr>
 <tr><td align="left"><div>F</div></td></tr>
 <tr><td><a href="Matrix.html#VALfill">fill</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">fill mat</code> returns a m x n matrix filled with float x</p>
+<p><code class="code">fill m n x</code> returns a m x n matrix filled with float x</p>
 
 </div>
 </td></tr>
@@ -116,7 +115,7 @@ term as a column vector</p>
 <tr><td align="left"><div>I</div></td></tr>
 <tr><td><a href="Matrix.html#VALinvert">invert</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">invert m</code> takes in a matrix of type t and returns the inverse</p>
+<p><code class="code">invert m</code> returns the inverse of matrix m.</p>
 
 </div>
 </td></tr>
@@ -125,8 +124,8 @@ term as a column vector</p>
 <td></td></tr>
 <tr><td><a href="Matrix.html#VALlu_decomp">lu_decomp</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">decomp m</code> produces a pair of matrices containing the LU
-    decomposition of matrix m</p>
+<p><code class="code">decomp m</code> produces a pair of matrices containing the LU-decomposition 
+of matrix m</p>
 
 </div>
 </td></tr>
@@ -146,9 +145,17 @@ term as a column vector</p>
 </div>
 </td></tr>
 <tr><td><a href="Statistics.html#VALmean">mean</a> [<a href="Statistics.html">Statistics</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">mean x</code> computes the mean of x</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Statistics.html#VALmedian">median</a> [<a href="Statistics.html">Statistics</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">median x</code> computes the median of x</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Matrix.html#VALmult">mult</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
 <p><code class="code">mult m1 m2</code> produces a new matrix of the product of m1 and m2</p>
@@ -158,8 +165,7 @@ term as a column vector</p>
 <tr><td align="left"><div>N</div></td></tr>
 <tr><td><a href="Matrix.html#VALnormalize">normalize</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">normalize mat</code> takes in a matrix of type t and returns its norm
-    Requires: t is a vector</p>
+<p><code class="code">normalize m</code> returns a normalized vector if m is a vector.</p>
 
 </div>
 </td></tr>
@@ -167,16 +173,20 @@ term as a column vector</p>
 <tr><td><a href="Matrix.html#VALop">op</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
 <p><code class="code">op m1 m2 f</code> applies the operator f to pair of elements in m1 m2 and
-    returns <code class="code">[f a1 b1; f a2 b2; ...]; [...]</code></p>
+    returns a matrix containing [[f a1 b1; f a2 b2; ...]; ...]</p>
 
 </div>
 </td></tr>
 <tr><td align="left"><div>P</div></td></tr>
 <tr><td><a href="Statistics.html#VALpercentile">percentile</a> [<a href="Statistics.html">Statistics</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">percentile x p</code> computes the p_th percentile of x</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Matrix.html#VALpinv">pinv</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">pinv m</code> takes in a matrix of type t and returns its pseudoinverse</p>
+<p><code class="code">pinv m</code> returns the pseudoinverse of matrix m</p>
 
 </div>
 </td></tr>
@@ -208,9 +218,17 @@ y-values as a column vector</p>
 <td></td></tr>
 <tr><td align="left"><div>Q</div></td></tr>
 <tr><td><a href="Statistics.html#VALq1">q1</a> [<a href="Statistics.html">Statistics</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">q1 x</code> computes the first quartile of x</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Statistics.html#VALq3">q3</a> [<a href="Statistics.html">Statistics</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">q3 x </code> computes the third quartile of x</p>
+
+</div>
+</td></tr>
 <tr><td align="left"><div>R</div></td></tr>
 <tr><td><a href="Matrix.html#VALrref">rref</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
@@ -223,7 +241,7 @@ y-values as a column vector</p>
 <td></td></tr>
 <tr><td><a href="Matrix.html#VALscale">scale</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">scale mat c</code> takes in a matrix of type t and scales it by factor of
+<p><code class="code">scale m c</code> takes in m and scales it by factor of
     c</p>
 
 </div>
@@ -242,15 +260,23 @@ y-values as a column vector</p>
 <tr><td><a href="Dataframe.html#VALsplit_with_cross_val">split_with_cross_val</a> [<a href="Dataframe.html">Dataframe</a>]</td>
 <td></td></tr>
 <tr><td><a href="Statistics.html#VALstd">std</a> [<a href="Statistics.html">Statistics</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">std x</code> computes the standard deviation of x</p>
+
+</div>
+</td></tr>
 <tr><td><a href="Statistics.html#VALsum">sum</a> [<a href="Statistics.html">Statistics</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">sum x</code> computes the sum of the elements of x</p>
+
+</div>
+</td></tr>
 <tr><td align="left"><div>T</div></td></tr>
 <tr><td><a href="Dataframe.html#VALtrain_test_split">train_test_split</a> [<a href="Dataframe.html">Dataframe</a>]</td>
 <td></td></tr>
 <tr><td><a href="Matrix.html#VALtranspose">transpose</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">transpose t</code> transposes the matrix</p>
+<p><code class="code">transpose m</code> transposes the matrix m</p>
 
 </div>
 </td></tr>
@@ -261,11 +287,15 @@ y-values as a column vector</p>
 <td></td></tr>
 <tr><td align="left"><div>V</div></td></tr>
 <tr><td><a href="Statistics.html#VALvar">var</a> [<a href="Statistics.html">Statistics</a>]</td>
-<td></td></tr>
+<td><div class="info">
+<p><code class="code">var x</code> computes the variance of x</p>
+
+</div>
+</td></tr>
 <tr><td align="left"><div>Z</div></td></tr>
 <tr><td><a href="Matrix.html#VALzero">zero</a> [<a href="Matrix.html">Matrix</a>]</td>
 <td><div class="info">
-<p><code class="code">empty m n</code> produces an m by n matrix of 0's</p>
+<p><code class="code">empty m n</code> produces an m x n matrix of 0's</p>
 
 </div>
 </td></tr>

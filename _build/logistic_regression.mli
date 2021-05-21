@@ -1,5 +1,3 @@
-(** *)
-
 val fit : Matrix.t -> Matrix.t -> float -> int -> Matrix.t
 (** [fit x y alpha n] takes in a col vector x, a feature matrix y, an
     alpha value, and number of repitions n, and returns the predicted

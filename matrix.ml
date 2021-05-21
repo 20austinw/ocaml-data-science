@@ -1,7 +1,4 @@
-type t = { 
-  dimensions : int * int; 
-  matrix : float list list 
-}
+type t = { dimensions : int * int; matrix : float list list }
 
 exception InvalidDimensions of string
 
@@ -21,8 +18,7 @@ let eye n =
   {
     dimensions = (n, n);
     matrix =
-      List.init n (fun i -> 
-        List.init n (fun j -> if i = j then 1.0 else 0.0));
+      List.init n (fun i -> List.init n (fun j -> if i = j then 1.0 else 0.0));
   }
 
 let transpose m =
@@ -30,8 +26,7 @@ let transpose m =
     | [] -> []
     | [] :: _ -> []
     | (a :: b) :: c ->
-        (a :: List.map List.hd c) 
-        :: helper (b :: List.map List.tl c)
+        (a :: List.map List.hd c) :: helper (b :: List.map List.tl c)
   in
   {
     dimensions = (snd m.dimensions, fst m.dimensions);
@@ -145,8 +140,7 @@ let concat mat1 mat2 =
       | [] ->
           {
             dimensions =
-              (fst mat1.dimensions, 
-              snd mat1.dimensions + snd mat2.dimensions);
+              (fst mat1.dimensions, snd mat1.dimensions + snd mat2.dimensions);
             matrix = acc;
           }
       | h :: t -> (
@@ -170,13 +164,7 @@ let invert mat =
     {
       dimensions = (n, n);
       matrix =
-        m 
-        |> transpose 
-        |> matrix 
-        |> split n 
-        |> construct 
-        |> transpose 
-        |> matrix;
+        m |> transpose |> matrix |> split n |> construct |> transpose |> matrix;
     }
 
 let scale mat c =
@@ -198,17 +186,13 @@ let rec det mat =
           m'.(i - 1) <-
             Array.append
               (Array.sub m.(i) 0 j)
-              (Array.sub m.(i) 
-                (if j + 1 < n then j + 1 else n - 1) (n - j - 1))
+              (Array.sub m.(i) (if j + 1 < n then j + 1 else n - 1) (n - j - 1))
         done;
         sum :=
           !sum
           +. (-1.0 ** float_of_int (j mod 2))
              *. m.(0).(j)
-             *. det { 
-               dimensions = (n - 1, n - 1); 
-               matrix = m' |> to_list 
-              }
+             *. det { dimensions = (n - 1, n - 1); matrix = m' |> to_list }
       done;
       !sum
 
@@ -217,11 +201,7 @@ let magnitude vec =
     raise (InvalidDimensions "Please ensure that matrix is a vector!")
   else
     let m =
-      if snd vec.dimensions = 1 then 
-        vec 
-        |> transpose 
-        |> matrix 
-      else vec.matrix
+      if snd vec.dimensions = 1 then vec |> transpose |> matrix else vec.matrix
     in
     match m with
     | [] -> assert false
@@ -233,11 +213,7 @@ let normalize mat =
     scale mat (1. /. det')
   else
     let m =
-      if snd mat.dimensions = 1 then 
-        mat 
-        |> transpose 
-        |> matrix 
-      else mat.matrix
+      if snd mat.dimensions = 1 then mat |> transpose |> matrix else mat.matrix
     in
     match m with
     | [] -> assert false
@@ -279,10 +255,7 @@ let elem_pow mat r =
 
 let pinv m =
   let m' = transpose m in
-  let dot_inverse = 
-    m 
-    |> mult m' 
-    |> invert in
+  let dot_inverse = m |> mult m' |> invert in
   mult dot_inverse m'
 
 let op mat1 mat2 f =
@@ -299,10 +272,10 @@ let op mat1 mat2 f =
     { mat1 with matrix = m' }
 
 let dot vec1 vec2 =
-  if (fst vec1.dimensions != 1 && snd vec1.dimensions != 1)
+  if
+    (fst vec1.dimensions != 1 && snd vec1.dimensions != 1)
     || (fst vec2.dimensions != 1 && snd vec2.dimensions != 1)
-  then 
-    raise (InvalidDimensions "Please use [mult] for matrix multiplication!")
+  then raise (InvalidDimensions "Please use [mult] for matrix multiplication!")
   else
     let v1 =
       (if fst vec1.dimensions != 1 then transpose vec1 else vec1).matrix

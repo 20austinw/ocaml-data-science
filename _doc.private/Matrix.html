@@ -64,25 +64,25 @@
 
 <pre><span id="VALfill"><span class="keyword">val</span> fill</span> : <code class="type">int -> int -> float -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">fill mat</code> returns a m x n matrix filled with float x</p>
+<p><code class="code">fill m n x</code> returns a m x n matrix filled with float x</p>
 </div>
 </div>
 
 <pre><span id="VALzero"><span class="keyword">val</span> zero</span> : <code class="type">int -> int -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">empty m n</code> produces an m by n matrix of 0's</p>
+<p><code class="code">empty m n</code> produces an m x n matrix of 0's</p>
 </div>
 </div>
 
 <pre><span id="VALeye"><span class="keyword">val</span> eye</span> : <code class="type">int -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">eye n</code> produces an n by n identity matrix</p>
+<p><code class="code">eye n</code> produces an n x n identity matrix</p>
 </div>
 </div>
 
 <pre><span id="VALtranspose"><span class="keyword">val</span> transpose</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">transpose t</code> transposes the matrix</p>
+<p><code class="code">transpose m</code> transposes the matrix m</p>
 </div>
 </div>
 
@@ -103,41 +103,42 @@
 
 <pre><span id="VALconstruct"><span class="keyword">val</span> construct</span> : <code class="type">float list list -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">construct m</code> takes in a float list list and returns matrix and
-    throws InvalidDimensions if rows are not of the same length</p>
+<p><code class="code">construct m</code> takes in a float list list m and returns matrix. Throws
+ InvalidDimensions if rows are not of the same length</p>
 </div>
 </div>
 
 <pre><span id="VALlu_decomp"><span class="keyword">val</span> lu_decomp</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> <a href="Matrix.html#TYPEt">t</a> * <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">decomp m</code> produces a pair of matrices containing the LU
-    decomposition of matrix m</p>
+<p><code class="code">decomp m</code> produces a pair of matrices containing the LU-decomposition 
+of matrix m</p>
 </div>
 </div>
 
 <pre><span id="VALconcat"><span class="keyword">val</span> concat</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> <a href="Matrix.html#TYPEt">t</a> -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
 <p><code class="code">concat m1 m2</code> concatenates m1 and m2 and returns the resulting
-    matrix</p>
+    matrix <code class="code">m1 m2</code></p>
 </div>
 </div>
 
 <pre><span id="VALinvert"><span class="keyword">val</span> invert</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">invert m</code> takes in a matrix of type t and returns the inverse</p>
+<p><code class="code">invert m</code> returns the inverse of matrix m. Throws InvalidDimensions if 
+m is not a square matrix.</p>
 </div>
 </div>
 
 <pre><span id="VALscale"><span class="keyword">val</span> scale</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> float -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">scale mat c</code> takes in a matrix of type t and scales it by factor of
+<p><code class="code">scale m c</code> takes in m and scales it by factor of
     c</p>
 </div>
 </div>
 
 <pre><span id="VALdet"><span class="keyword">val</span> det</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> float</code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">det m</code> takes in a matrix of type t and returns its determinant</p>
+<p><code class="code">det m</code> returns the determinant of matrix m</p>
 </div>
 </div>
 
@@ -150,36 +151,36 @@
 
 <pre><span id="VALnormalize"><span class="keyword">val</span> normalize</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">normalize mat</code> takes in a matrix of type t and returns its norm
-    Requires: t is a vector</p>
+<p><code class="code">normalize m</code> returns a normalized vector if m is a vector. m / (det m) 
+is returned otherwise.</p>
 </div>
 </div>
 
 <pre><span id="VALeigen"><span class="keyword">val</span> eigen</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> bool -> float * <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">eigen mat dom</code> takes in a matrix of type t and returns a pair float
- t containing the eigenvector and its associated eigenvalue. If dom
-    is true then return the dominant eigenvector, else the smallest.</p>
+<p><code class="code">eigen mat dom</code> returns a pair float * t containing the eigenvector and its 
+associated eigenvalue. If dom is true then function returns the dominant 
+eigenvector, else the smallest.</p>
 </div>
 </div>
 
 <pre><span id="VALelem_pow"><span class="keyword">val</span> elem_pow</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> float -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">elem_pow mat r</code> takes in a matrix of type t and performs
-    element-wise power to the matrix</p>
+<p><code class="code">elem_pow m r</code> raises each entry of m to the power of r and returns the 
+resulting matrix.</p>
 </div>
 </div>
 
 <pre><span id="VALpinv"><span class="keyword">val</span> pinv</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
-<p><code class="code">pinv m</code> takes in a matrix of type t and returns its pseudoinverse</p>
+<p><code class="code">pinv m</code> returns the pseudoinverse of matrix m</p>
 </div>
 </div>
 
 <pre><span id="VALop"><span class="keyword">val</span> op</span> : <code class="type"><a href="Matrix.html#TYPEt">t</a> -> <a href="Matrix.html#TYPEt">t</a> -> (float -> float -> float) -> <a href="Matrix.html#TYPEt">t</a></code></pre><div class="info ">
 <div class="info-desc">
 <p><code class="code">op m1 m2 f</code> applies the operator f to pair of elements in m1 m2 and
-    returns <code class="code">[f a1 b1; f a2 b2; ...]; [...]</code></p>
+    returns a matrix containing [[f a1 b1; f a2 b2; ...]; ...]</p>
 </div>
 </div>
 
