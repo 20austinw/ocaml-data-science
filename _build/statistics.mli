@@ -1,5 +1,5 @@
 (* [sum x] computes the sum of the elements of x*)
-val sum: float list -> float
+val sum : float list -> float
 
 (* [mean x] computes the mean of x *)
 val mean : float list -> float
