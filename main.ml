@@ -73,7 +73,6 @@ let rec choose_model x_train x_test y_train y_test =
 
 let rec split_file file = 
   print_string "Enter the feature columns, one after another, separated by a space: \n";
-  print_string {|For example, if the column headings are "age", "gender" and "income", enter "age gender income"|};
   let input_string = read_line() in 
   let cols = String.split_on_char ' ' input_string in 
   print_string "Enter the target column: \n";

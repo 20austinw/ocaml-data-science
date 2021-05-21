@@ -14,18 +14,18 @@ let print_green = ANSITerminal.print_string [ ANSITerminal.green ]
 
 let print_init_instr () = 
   print_string "Choose a number: (Eg. If you want to impute values, enter 1) \n";
-  print_green "1. Impute values\n";
-  print_green "2. Split dataset into training and test sets\n"
+  print_blue "1. Impute values\n";
+  print_blue "2. Split dataset into training and test sets\n"
 
 let print_model_choice () = 
   print_string "Choose a machine learning algorithm: (Eg. If you want logistic regression, enter 1) ";
-  print_green "1. Logistic Regression";
-  print_green "2. Polynomial Regression";
-  print_green "3. K Nearest Neighbors";
-  print_green "4. K Means";
-  print_green "5. Naive Bayes";
-  print_green "6. Perceptron";
-  print_green "7. Decision Tree"
+  print_blue "1. Logistic Regression";
+  print_blue "2. Polynomial Regression";
+  print_blue "3. K Nearest Neighbors";
+  print_blue "4. K Means";
+  print_blue "5. Naive Bayes";
+  print_blue "6. Perceptron";
+  print_blue "7. Decision Tree"
 
 let rec handle_impute file input_func = 
   print_string "Enter the name of the column you want to impute values for: ";
@@ -36,9 +36,9 @@ let rec handle_impute file input_func =
     exit 0
   | col_name -> (
     try
-      print_string "Enter the value in this column that you like to replace: \n";
+      print_string "Enter the value in this column that you like to replace: ";
       let update_what = read_line () in 
-      print_string "Enter the value that you would like to replace the previous value: \n";
+      print_string "Enter the value that you would like to replace the previous value: ";
       let update_with = read_line () in 
       let file_updated = Dataframe.update 
         file col_name (fun x -> x = update_what) update_with in
@@ -73,7 +73,6 @@ let rec choose_model x_train x_test y_train y_test =
 
 let rec split_file file = 
   print_string "Enter the feature columns, one after another, separated by a space: \n";
-  print_string {|For example, if the column headings are "age", "gender" and "income", enter "age gender income"|};
   let input_string = read_line() in 
   let cols = String.split_on_char ' ' input_string in 
   print_string "Enter the target column: \n";
