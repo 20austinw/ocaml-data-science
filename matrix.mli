@@ -52,8 +52,8 @@ val det : t -> float
 (** [det m] returns the determinant of matrix m *)
 
 val magnitude : t -> float
-(** [magnitude mat] takes in a matrix of type t and returns its
-    magnitude Requires: t is a vector *)
+(** [magnitude m] takes in a matrix of type t and returns its
+    magnitude Requires: m is a vector *)
 
 val normalize : t -> t
 (** [normalize m] returns a normalized vector if m is a vector. m / (det m) 
