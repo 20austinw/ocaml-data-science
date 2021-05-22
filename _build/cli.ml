@@ -22,15 +22,16 @@ let print_init_instr () =
 
 let print_model_choice () =
   print_string
-    "Choose a machine learning algorithm: (Eg. If you want logistic \
+    "\n\
+     Choose a machine learning algorithm: (Eg. If you want logistic \
      regression, enter 1) ";
-  print_blue "1. Logistic Regression";
-  print_blue "2. Polynomial Regression";
-  print_blue "3. K Nearest Neighbors";
-  print_blue "4. K Means";
-  print_blue "5. Naive Bayes";
-  print_blue "6. Perceptron";
-  print_blue "7. Decision Tree"
+  print_blue "\n1. Logistic Regression";
+  print_blue "\n2. Polynomial Regression";
+  print_blue "\n3. K Nearest Neighbors";
+  print_blue "\n4. K Means";
+  print_blue "\n5. Naive Bayes";
+  print_blue "\n6. Perceptron";
+  print_blue "\n7. Decision Tree"
 
 let rec handle_impute file input_func =
   print_string
@@ -66,14 +67,23 @@ let rec handle_impute file input_func =
    make them consistent across all algorithms first. *)
 let rec choose_model x_train x_test y_train y_test =
   print_model_choice ();
-  print_string "> ";
+  print_string "\n> ";
   let user_input = read_line () in
+
+  let x_train_mat = Matrix.construct x_train in
+  let x_test_mat = Matrix.construct x_test in
+  let y_train_mat =
+    [ y_train ] |> Matrix.construct |> Matrix.transpose
+  in
+
   match user_input with
   | "quit" ->
       print_magenta farewell_msg;
       exit 0
-  | "1" -> ()
-  | "2" -> ()
+  | "1" ->
+      execute_log_regression x_train_mat x_test_mat y_train_mat y_test
+  | "2" ->
+      execute_poly_regression x_train_mat x_test_mat y_train_mat y_test
   | "3" -> ()
   | "4" -> ()
   | "5" -> ()
@@ -83,15 +93,42 @@ let rec choose_model x_train x_test y_train y_test =
       print_red command_error_msg;
       choose_model x_train x_test y_train y_test
 
+and execute_log_regression x_train x_test y_train y_test =
+  let w = Logistic_regression.fit x_train y_train 0.1 1000 in
+
+  let y_pred =
+    Logistic_regression.predict x_test
+    |> Matrix.transpose |> Matrix.matrix |> List.hd
+  in
+  let acc = Utils.accuracy y_test y_pred in
+  let mse = Utils.mean_squared_error y_test y_pred in
+  print_endline ("Accuracy: " ^ string_of_float acc);
+  print_endline ("Mean-Squared Error: " ^ string_of_float mse);
+  ()
+
+and execute_poly_regression x_train x_test y_train y_test =
+  let w = Polynomial_regression.fit x_train y_train 10 in
+
+  let y_pred =
+    Polynomial_regression.predict x_test
+    |> Matrix.transpose |> Matrix.matrix |> List.hd
+  in
+  let acc = Utils.accuracy y_test y_pred in
+  let mse = Utils.mean_squared_error y_test y_pred in
+  print_endline ("Accuracy: " ^ string_of_float acc);
+  print_endline ("Mean-Squared Error: " ^ string_of_float mse);
+  ()
+
 let rec split_file file =
   print_string
-    "Enter the feature columns, one after another, separated by a \
+    "\n\
+     Enter the feature columns, one after another, separated by a \
      space: \n";
   let input_string = read_line () in
   let cols = String.split_on_char ' ' input_string in
-  print_string "Enter the target column: \n";
+  print_string "\nEnter the target column: \n";
   let target = read_line () in
-  print_string "Enter the test percent: \n";
+  print_string "\nEnter the test percent: \n";
   let test_percent = read_line () in
   try
     let x_train, x_test, y_train, y_test =
@@ -101,6 +138,7 @@ let rec split_file file =
     choose_model x_train x_test y_train y_test
   with _ ->
     print_red command_error_msg;
+    Dataframe.print_df file;
     split_file file
 
 let rec ask_input file =
@@ -131,7 +169,7 @@ let rec start_ui () =
       start_ui ()
   | file_name -> (
       try
-        ANSITerminal.erase Screen;
+        print_endline "";
         let file = Dataframe.loadfile file_name in
         Dataframe.print_df file;
         ask_input file
@@ -139,11 +177,9 @@ let rec start_ui () =
         print_red file_error_msg;
         start_ui ())
 
-(** [main ()] shows the welcome screen. *)
 let main () =
   ANSITerminal.erase Screen;
   print_blue "\nWelcome to the OCaml data science library.\n\n";
   start_ui ()
 
-(* Execute the game engine. *)
 let () = main ()

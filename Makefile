@@ -1,4 +1,4 @@
-MODULES=matrix statistics polynomial_regression dataframe knn logistic_regression 
+MODULES= utils statistics polynomial_regression dataframe knn logistic_regression
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)

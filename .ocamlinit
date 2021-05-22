@@ -7,4 +7,5 @@
 #load "polynomial_regression.cmo";;
 #load "statistics.cmo";;
 #load "knn.cmo";;
+#load "utils.cmo";;
 #load "logistic_regression.cmo";;
