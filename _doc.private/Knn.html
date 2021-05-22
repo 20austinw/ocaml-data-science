@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Dataframe.html">
+<link rel="next" href="Logistic_regression.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Matrix" rel="Chapter" href="Matrix.html">
+<link title="Statistics" rel="Chapter" href="Statistics.html">
+<link title="Polynomial_regression" rel="Chapter" href="Polynomial_regression.html">
+<link title="Dataframe" rel="Chapter" href="Dataframe.html">
+<link title="Knn" rel="Chapter" href="Knn.html">
+<link title="Logistic_regression" rel="Chapter" href="Logistic_regression.html"><title>Knn</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Dataframe.html" title="Dataframe">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Logistic_regression.html" title="Logistic_regression">Next</a>
+</div>
+<h1>Module <a href="type_Knn.html">Knn</a></h1>
+
+<pre><span id="MODULEKnn"><span class="keyword">module</span> Knn</span>: <code class="code">sig</code> <a href="Knn.html">..</a> <code class="code">end</code></pre><div class="info module top">
+</div>
+<hr width="100%">
+
+<pre><span id="VALk"><span class="keyword">val</span> k</span> : <code class="type">int Stdlib.ref</code></pre>
+<pre><span id="VALset_k"><span class="keyword">val</span> set_k</span> : <code class="type">int -> int</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">set_k k</code> sets the value k to be used in the knn algorithm, and
+    returns k</p>
+</div>
+</div>
+
+<pre><span id="VALvote"><span class="keyword">val</span> vote</span> : <code class="type">'a list -> 'a</code></pre>
+<pre><span id="VALeuclidean_distance"><span class="keyword">val</span> euclidean_distance</span> : <code class="type">float list -> float list -> float</code></pre>
+<pre><span id="VALarg_sort"><span class="keyword">val</span> arg_sort</span> : <code class="type">'a list -> int -> int list</code></pre>
+<pre><span id="VALpredict"><span class="keyword">val</span> predict</span> : <code class="type">float list list -> float list list -> 'a list -> 'a list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">predict x_test x_train y_train</code> computes the predicted
+    corresponding labels of x_test using the x_train and y_train as
+    training data for the points and labels respectively</p>
+</div>
+</div>
+</body></html>

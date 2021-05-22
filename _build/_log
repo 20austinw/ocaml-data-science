@@ -1,16 +1,2 @@
 ### Starting build.
-# Target: main.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules main.ml > main.ml.depends
-# Target: dataframe.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:dataframe.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules dataframe.mli > dataframe.mli.depends # cached
-# Target: dataframe.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:dataframe.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o dataframe.cmi dataframe.mli # cached
-# Target: main.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o main.cmo main.ml
-# Target: dataframe.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:dataframe.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules dataframe.ml > dataframe.ml.depends # cached
-# Target: dataframe.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:dataframe.cmo, file:dataframe.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o dataframe.cmo dataframe.ml # cached
-# Target: main.byte, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, debug, dont_link_with, extension:byte, file:main.byte, link, ocaml, program, quiet, traverse }
-ocamlfind ocamlc -linkpkg -g -package ounit2 -package csv -package ANSITerminal dataframe.cmo main.cmo -o main.byte
-# Compilation successful.
+# Compilation unsuccessful.
