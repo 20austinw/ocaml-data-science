@@ -6,3 +6,6 @@ term as a column vector*)
 val predict : Matrix.t -> Matrix.t
 (** [predict v1] takes in the x-values v1 and produces the corresponding 
 y-values as a column vector *)
+
+val fit_and_predict :
+  Matrix.t -> Matrix.t -> Matrix.t -> Matrix.t -> int -> float
