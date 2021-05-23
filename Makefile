@@ -1,8 +1,9 @@
-MODULES=matrix statistics polynomial_regression dataframe knn logistic_regression
+MODULES= utils statistics polynomial_regression dataframe knn logistic_regression
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
 TEST=test.byte
+MAIN=main.byte
 CLI=cli.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind
 
@@ -17,6 +18,9 @@ test:
 
 cli:
 	$(OCAMLBUILD) -tag 'debug' $(CLI) && OCAMLRUNPARAM=b ./$(CLI)
+
+ui:
+	$(OCAMLBUILD) -tag 'debug' $(MAIN) && OCAMLRUNPARAM=b ./$(MAIN)
 
 zip: 
 	zip data-science.zip *.ml* *.json *.sh _tags *.ipynb .merlin .ocamlformat .ocamlinit LICENSE Makefile 
