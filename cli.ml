@@ -63,6 +63,30 @@ let rec handle_impute file input_func =
         print_red command_error_msg;
         handle_impute file input_func)
 
+let execute_log_regression x_train x_test y_train y_test =
+  let w = Logistic_regression.fit x_train y_train 0.1 1000 in
+  let y_pred =
+    Logistic_regression.predict x_test
+    |> Matrix.transpose |> Matrix.matrix |> List.hd
+  in
+  let acc = Utils.accuracy y_test y_pred in
+  let mse = Utils.mean_squared_error y_test y_pred in
+  print_endline ("Accuracy: " ^ string_of_float acc);
+  print_endline ("Mean-Squared Error: " ^ string_of_float mse);
+  ()
+
+let execute_poly_regression x_train x_test y_train y_test =
+  let w = Polynomial_regression.fit x_train y_train 10 in
+  let y_pred =
+    Polynomial_regression.predict x_test
+    |> Matrix.transpose |> Matrix.matrix |> List.hd
+  in
+  let acc = Utils.accuracy y_test y_pred in
+  let mse = Utils.mean_squared_error y_test y_pred in
+  print_endline ("Accuracy: " ^ string_of_float acc);
+  print_endline ("Mean-Squared Error: " ^ string_of_float mse);
+  ()
+
 (* Call the relevant fit and predict functions in branches here, need to
    make them consistent across all algorithms first. *)
 let rec choose_model x_train x_test y_train y_test =
@@ -86,38 +110,22 @@ let rec choose_model x_train x_test y_train y_test =
       execute_poly_regression x_train_mat x_test_mat y_train_mat y_test
   | "3" -> ()
   | "4" -> ()
-  | "5" -> ()
+  | "5" -> 
+    let acc, mse = Naive_bayes.fit_and_predict 
+      (Matrix.construct x_train) (Matrix.construct x_test) y_train y_test in 
+    print_endline ("Accuracy: " ^ string_of_float acc);
+    print_endline ("Mean-Squared Error: " ^ string_of_float mse)
   | "6" -> ()
-  | "7" -> ()
+  | "7" -> 
+    let acc, mse = Decision_tree.fit_and_predict 
+      (Matrix.construct x_train) (Matrix.construct x_test) y_train y_test in 
+    print_endline ("Accuracy: " ^ string_of_float acc);
+    print_endline ("Mean-Squared Error: " ^ string_of_float mse)
   | _ ->
       print_red command_error_msg;
       choose_model x_train x_test y_train y_test
 
-and execute_log_regression x_train x_test y_train y_test =
-  let w = Logistic_regression.fit x_train y_train 0.1 1000 in
 
-  let y_pred =
-    Logistic_regression.predict x_test
-    |> Matrix.transpose |> Matrix.matrix |> List.hd
-  in
-  let acc = Utils.accuracy y_test y_pred in
-  let mse = Utils.mean_squared_error y_test y_pred in
-  print_endline ("Accuracy: " ^ string_of_float acc);
-  print_endline ("Mean-Squared Error: " ^ string_of_float mse);
-  ()
-
-and execute_poly_regression x_train x_test y_train y_test =
-  let w = Polynomial_regression.fit x_train y_train 10 in
-
-  let y_pred =
-    Polynomial_regression.predict x_test
-    |> Matrix.transpose |> Matrix.matrix |> List.hd
-  in
-  let acc = Utils.accuracy y_test y_pred in
-  let mse = Utils.mean_squared_error y_test y_pred in
-  print_endline ("Accuracy: " ^ string_of_float acc);
-  print_endline ("Mean-Squared Error: " ^ string_of_float mse);
-  ()
 
 let rec split_file file =
   print_string

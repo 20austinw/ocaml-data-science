@@ -9,3 +9,7 @@
 #load "knn.cmo";;
 #load "utils.cmo";;
 #load "logistic_regression.cmo";;
+#load "decision_tree.cmo";;
+#load "naive_bayes.cmo";;
+#load "perceptron.cmo";;
+#load "k_means.cmo"
