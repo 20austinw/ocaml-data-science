@@ -148,7 +148,8 @@ let concat mat1 mat2 =
           | [] -> assert false
           | x :: xs -> helper t xs (acc @ [ h @ x ]))
     in
-    helper m1 m2 []
+    helper m1 m2 
+    []
 
 let invert mat =
   if fst mat.dimensions != snd mat.dimensions then
