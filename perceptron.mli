@@ -1,1 +1,1 @@
-val learn : Matrix.t -> float -> Matrix.t
+val train : Matrix.t -> float -> Matrix.t -> Matrix.t
