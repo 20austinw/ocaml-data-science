@@ -1,4 +1,5 @@
 open Matrix
+open Utils
 
 let w = ref (zero 1 1)
 
@@ -23,3 +24,9 @@ let predict x =
   in
   let x' = make 0 (List.init (x |> dim |> fst) (fun x -> []) |> construct) in
   mult x' !w
+
+let fit_and_predict x_train y_train x_test y_test n =
+  let weights = fit x_train y_train n in
+  let [ y ] = predict x_test |> transpose |> matrix in
+  let [ y' ] = y_test |> transpose |> matrix in
+  accuracy y' y
