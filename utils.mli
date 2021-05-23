@@ -1,4 +1,6 @@
-(** *)
+(** Utility functions
+
+    This module has useful functions to compare two lists*)
 
 (** [diff a b] returns the difference between lists a and b *)
 val diff : float list -> float list -> float list

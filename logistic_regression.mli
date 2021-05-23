@@ -1,4 +1,4 @@
-(** *)
+(** Logistic regression algorithm*)
 
 (** [fit x y alpha n] takes in col vectors x and y, an alpha value, and
     number of repitions n, and returns the predicted weights as a column

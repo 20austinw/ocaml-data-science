@@ -1,4 +1,5 @@
-MODULES= utils statistics polynomial_regression dataframe knn logistic_regression decision_tree k_means naive_bayes perceptron
+MODULES= utils statistics matrix dataframe polynomial_regression logistic_regression \
+    knn k_means naive_bayes decision_tree perceptron authors
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)

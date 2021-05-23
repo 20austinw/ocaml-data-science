@@ -1,4 +1,4 @@
-(** *)
+(** K-nearest neighbors algorithm*)
 
 (** [set_k k] sets the value k to be used in the knn algorithm, and
     returns k *)
