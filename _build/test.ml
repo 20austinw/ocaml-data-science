@@ -1,3 +1,41 @@
+(* Test plan:
+
+   We used a combination of black box and manual testing to ensure the
+   correctness of our project. The dataframe, matrix and statistics
+   modules were extensively tested using OUnit black box testing. Since
+   the functions in these modules are either computing specific values
+   or changing a data structure in a specific way, it makes sense to
+   test if those operations are carried out according to the
+   specifications of the respective function. We made the judgement that
+   glass-box testing would be an unnecessary amount of work since
+   testing for edge cases and normal inputs using black box testing is
+   already fairly extensive, and was very effective at helping us catch
+   bugs. Glass box testing was also not a good choice as our algorithms
+   were dependent on the specifications of the functions in these
+   modules, not how those functions were implemented. As a result, we
+   found ourselves constantly changing the implementations of functions
+   without changing their specifications, which would be difficult to
+   keep track of in glass box testing but requires no change in our
+   strategy for black box testing.
+
+   Owing to the unusual nature of our project, we decided that it does
+   not really make sense to apply the same testing mechanism for the
+   machine learning modules since the performance of a machine learning
+   algorithm is dependent upon the data it receives. The fact that we
+   were expecting a 85% accuracy but only got 80%, for example, is not
+   an indication that the algorithm is wrong in any way. Therefore, the
+   algorithms were manually tested using jupyter demos to evaluate their
+   correctness and performance. The fact that they were able to
+   correctly perform the classification/regression tasks, coupled with
+   visual proof of how they performed on the datasets is evidence that
+   they are correct.
+
+   Finally, the command line interface was also tested manually by
+   simply having different people try different, weird inputs and
+   checking if the outputs were expected. User interfaces cannot really
+   be tested in any other way, and we believe we have performed enough
+   manual testing to claim that our interface is working flawlessly. *)
+
 open Matrix
 open Statistics
 open Dataframe
@@ -8,10 +46,13 @@ let comp_matrix mat1 mat2 =
   let m1 = matrix mat1 and m2 = matrix mat2 in
   List.iter2
     (fun l1 l2 ->
-      List.iter2 (fun x1 x2 -> assert (abs_float (x1 -. x2) < 0.0001)) l1 l2)
+      List.iter2
+        (fun x1 x2 -> assert (abs_float (x1 -. x2) < 0.0001))
+        l1 l2)
     m1 m2
 
-let eye_test name n res = name >:: fun ctxt -> assert_equal res (eye n |> matrix)
+let eye_test name n res =
+  name >:: fun ctxt -> assert_equal res (eye n |> matrix)
 
 let zero_test name m n res =
   name >:: fun ctxt -> assert_equal res (zero m n |> matrix)
@@ -20,7 +61,9 @@ let transpose_test name m res =
   name >:: fun ctxt ->
   let mat = m |> construct |> transpose in
   assert_equal res (mat |> matrix);
-  assert_equal (List.length res, res |> List.hd |> List.length) (dim mat)
+  assert_equal
+    (List.length res, res |> List.hd |> List.length)
+    (dim mat)
 
 let lu_decomp_test name m res =
   name >:: fun ctxt ->
@@ -29,13 +72,15 @@ let lu_decomp_test name m res =
      (matrix (fst x), matrix (snd x)))
 
 let invert_test name m res =
-  name >:: fun ctxt -> comp_matrix (res |> construct) (m |> construct |> invert)
+  name >:: fun ctxt ->
+  comp_matrix (res |> construct) (m |> construct |> invert)
 
 let det_test name m res =
   name >:: fun ctxt -> assert_equal res (m |> construct |> det)
 
 let normalize_test name m res =
-  name >:: fun ctxt -> assert_equal res (m |> construct |> normalize |> matrix)
+  name >:: fun ctxt ->
+  assert_equal res (m |> construct |> normalize |> matrix)
 
 let concat_test name m1 m2 res =
   name >:: fun ctxt ->
@@ -49,13 +94,16 @@ let op_test name m1 m2 f res =
   comp_matrix (res |> construct) (op (construct m1) (construct m2) f)
 
 let dot name v1 v2 res =
-  name >:: fun ctxt -> assert_equal res (dot (construct v1) (construct v2))
+  name >:: fun ctxt ->
+  assert_equal res (dot (construct v1) (construct v2))
 
 let elem_f_test name m f res =
-  name >:: fun ctxt -> assert_equal res (elem_f (construct m) f |> matrix)
+  name >:: fun ctxt ->
+  assert_equal res (elem_f (construct m) f |> matrix)
 
 let rref_test name m res =
-  name >:: fun ctxt -> comp_matrix (rref (m |> construct)) (res |> construct)
+  name >:: fun ctxt ->
+  comp_matrix (rref (m |> construct)) (res |> construct)
 
 let matrix_tests =
   [
@@ -84,7 +132,8 @@ let matrix_tests =
     lu_decomp_test "LU decomposition test 1"
       [ [ 2.0; -1.0; -2.0 ]; [ -4.0; 6.0; 3.0 ]; [ -4.0; -2.0; 8.0 ] ]
       ( [ [ 1.0; 0.0; 0.0 ]; [ -2.0; 1.0; 0.0 ]; [ -2.0; -1.0; 1.0 ] ],
-        [ [ 2.0; -1.0; -2.0 ]; [ 0.0; 4.0; -1.0 ]; [ 0.0; 0.0; 3.0 ] ] );
+        [ [ 2.0; -1.0; -2.0 ]; [ 0.0; 4.0; -1.0 ]; [ 0.0; 0.0; 3.0 ] ]
+      );
     invert_test "Matrix inverse test 1"
       [ [ 3.0; 0.0; 2.0 ]; [ 2.0; 0.0; -2.0 ]; [ 0.0; 1.0; 1.0 ] ]
       [ [ 0.2; 0.2; 0. ]; [ -0.2; 0.3; 1. ]; [ 0.2; -0.3; 0. ] ];
@@ -152,12 +201,15 @@ let matrix_tests =
      normalize_test "Normalize test: Row vector" [ [ 1.; 2.; 3. ] ]
        [ [ 1. /. m; 2. /. m; 3. /. m ] ]);
     (let m = [ [ 1. ]; [ 2. ]; [ 3. ] ] |> construct |> magnitude in
-     normalize_test "Normalize test: Column vector" [ [ 1. ]; [ 2. ]; [ 3. ] ]
+     normalize_test "Normalize test: Column vector"
+       [ [ 1. ]; [ 2. ]; [ 3. ] ]
        [ [ 1. /. m ]; [ 2. /. m ]; [ 3. /. m ] ]);
-    concat_test "Concat test 1" [ [ 1. ]; [ 2. ]; [ 3. ] ]
+    concat_test "Concat test 1"
+      [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1.; 1. ]; [ 2.; 2. ]; [ 3.; 3. ] ];
-    concat_test "Concat test 2" [ [ 1. ]; [ 2. ]; [ 3. ] ]
+    concat_test "Concat test 2"
+      [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1.; 1. ]; [ 2.; 2. ]; [ 3.; 3. ] ]
       [ [ 1.; 1.; 1. ]; [ 2.; 2.; 2. ]; [ 3.; 3.; 3. ] ];
     concat_test "Concat test on single entries" [ [ 1. ] ] [ [ 1. ] ]
@@ -249,7 +301,17 @@ let init_df =
           "4.26";
           "10.84";
         ];
-        [ "9.14"; "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13" ];
+        [
+          "9.14";
+          "8.14";
+          "8.74";
+          "8.77";
+          "9.26";
+          "8.1";
+          "6.13";
+          "3.1";
+          "9.13";
+        ];
         [
           "7.46";
           "6.77";
@@ -262,7 +324,15 @@ let init_df =
           "8.15";
         ];
         [
-          "6.58"; "5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56";
+          "6.58";
+          "5.76";
+          "7.71";
+          "8.84";
+          "8.47";
+          "7.04";
+          "5.25";
+          "12.5";
+          "5.56";
         ];
       ];
   }
@@ -284,7 +354,17 @@ let selected_many =
           "4.26";
           "10.84";
         ];
-        [ "9.14"; "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13" ];
+        [
+          "9.14";
+          "8.14";
+          "8.74";
+          "8.77";
+          "9.26";
+          "8.1";
+          "6.13";
+          "3.1";
+          "9.13";
+        ];
         [
           "7.46";
           "6.77";
@@ -311,7 +391,17 @@ let selected_many_by_indices =
     data =
       [
         [ "10"; "8"; "13"; "9"; "11"; "14"; "6"; "4"; "12" ];
-        [ "9.14"; "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13" ];
+        [
+          "9.14";
+          "8.14";
+          "8.74";
+          "8.77";
+          "9.26";
+          "8.1";
+          "6.13";
+          "3.1";
+          "9.13";
+        ];
         [
           "7.46";
           "6.77";
@@ -362,7 +452,17 @@ let update_by_col =
           "4.26";
           "10.84";
         ];
-        [ "9.14"; "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13" ];
+        [
+          "9.14";
+          "8.14";
+          "8.74";
+          "8.77";
+          "9.26";
+          "8.1";
+          "6.13";
+          "3.1";
+          "9.13";
+        ];
         [
           "7.46";
           "6.77";
@@ -375,7 +475,15 @@ let update_by_col =
           "8.15";
         ];
         [
-          "6.58"; "5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56";
+          "6.58";
+          "5.76";
+          "7.71";
+          "8.84";
+          "8.47";
+          "7.04";
+          "5.25";
+          "12.5";
+          "5.56";
         ];
       ];
   }
@@ -397,7 +505,17 @@ let update_by_index =
           "4.26";
           "10.84";
         ];
-        [ "9.14"; "12"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13" ];
+        [
+          "9.14";
+          "12";
+          "8.74";
+          "8.77";
+          "9.26";
+          "8.1";
+          "6.13";
+          "3.1";
+          "9.13";
+        ];
         [
           "7.46";
           "6.77";
@@ -410,7 +528,15 @@ let update_by_index =
           "8.15";
         ];
         [
-          "6.58"; "5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56";
+          "6.58";
+          "5.76";
+          "7.71";
+          "8.84";
+          "8.47";
+          "7.04";
+          "5.25";
+          "12.5";
+          "5.56";
         ];
       ];
   }
@@ -421,10 +547,30 @@ let filter_by_col =
     data =
       [
         [ "8"; "13"; "9"; "11"; "14"; "6"; "4"; "12" ];
-        [ "6.95"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84" ];
+        [
+          "6.95";
+          "7.58";
+          "8.81";
+          "8.33";
+          "9.96";
+          "7.24";
+          "4.26";
+          "10.84";
+        ];
         [ "8.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13" ];
-        [ "6.77"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15" ];
-        [ "5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56" ];
+        [
+          "6.77";
+          "12.74";
+          "7.11";
+          "7.81";
+          "8.84";
+          "6.08";
+          "5.39";
+          "8.15";
+        ];
+        [
+          "5.76"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56";
+        ];
       ];
   }
 
@@ -440,10 +586,30 @@ let filter_by_index =
     data =
       [
         [ "10"; "13"; "9"; "11"; "14"; "6"; "4"; "12" ];
-        [ "8.04"; "7.58"; "8.81"; "8.33"; "9.96"; "7.24"; "4.26"; "10.84" ];
+        [
+          "8.04";
+          "7.58";
+          "8.81";
+          "8.33";
+          "9.96";
+          "7.24";
+          "4.26";
+          "10.84";
+        ];
         [ "9.14"; "8.74"; "8.77"; "9.26"; "8.1"; "6.13"; "3.1"; "9.13" ];
-        [ "7.46"; "12.74"; "7.11"; "7.81"; "8.84"; "6.08"; "5.39"; "8.15" ];
-        [ "6.58"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56" ];
+        [
+          "7.46";
+          "12.74";
+          "7.11";
+          "7.81";
+          "8.84";
+          "6.08";
+          "5.39";
+          "8.15";
+        ];
+        [
+          "6.58"; "7.71"; "8.84"; "8.47"; "7.04"; "5.25"; "12.5"; "5.56";
+        ];
       ];
   }
 
@@ -530,7 +696,8 @@ let update_by_col_test name df col f update_to res =
   name >:: fun ctxt -> assert_equal res (update df col f update_to)
 
 let update_by_col_i_test name df col_index f update_to res =
-  name >:: fun ctxt -> assert_equal res (update_i df col_index f update_to)
+  name >:: fun ctxt ->
+  assert_equal res (update_i df col_index f update_to)
 
 let filter_by_col_test name df col f res =
   name >:: fun ctxt -> assert_equal res (filter df col f)
@@ -550,39 +717,44 @@ let dataframe_tests =
   [
     load_test "loading files" "quartet.csv" init_df;
     selected_many_test "selecting many cols by name" init_df
-      [ "x1"; "y1"; "y2"; "y3" ] selected_many;
-    selected_one_test "selecting one column by name" init_df "x1" selected_one;
-    selected_many_by_indices_test "selecting many columns using indices" init_df
-      [ 0; 2; 3 ] selected_many_by_indices;
-    selected_one_by_indices_test "selecting one column using its index" init_df
-      1 selected_one_by_indices;
+      [ "x1"; "y1"; "y2"; "y3" ]
+      selected_many;
+    selected_one_test "selecting one column by name" init_df "x1"
+      selected_one;
+    selected_many_by_indices_test "selecting many columns using indices"
+      init_df [ 0; 2; 3 ] selected_many_by_indices;
+    selected_one_by_indices_test "selecting one column using its index"
+      init_df 1 selected_one_by_indices;
     update_by_col_test "updating a column by name" init_df "x1"
       (fun x -> x = "10")
       "12" update_by_col;
     update_by_col_i_test "updating a column by its index" init_df 2
       (fun x -> x = "8.14")
       "12" update_by_index;
-    filter_by_col_test "filtering a column using unequal condition" init_df "x1"
+    filter_by_col_test "filtering a column using unequal condition"
+      init_df "x1"
       (fun x -> x <> "10")
       filter_by_col;
-    filter_by_col_test "filtering a column using equal condition" init_df "x1"
+    filter_by_col_test "filtering a column using equal condition"
+      init_df "x1"
       (fun x -> x = "10")
       filter_by_col_2;
-    filter_by_col_i_test "filtering a column using its index instead of name"
-      init_df 2
+    filter_by_col_i_test
+      "filtering a column using its index instead of name" init_df 2
       (fun x -> x <> "8.14")
       filter_by_index;
-    train_test_split_test "train test split 1" init_df [ "y1"; "y2"; "y3" ] "x1"
-      0.5 train_test_split_1;
-    train_test_split_test "train test split 2" init_df [ "y1"; "y2"; "y3" ] "x1"
-      0.2 train_test_split_2;
-    cross_val_split_test "cross val split test 1" init_df [ "y1"; "y2"; "y3" ]
-      "x1" 0.1 0.1 cross_val_split_1;
-    cross_val_split_test "cross val split test 2" init_df [ "y1"; "y2"; "y3" ]
-      "x1" 0.2 0.2 cross_val_split_2;
+    train_test_split_test "train test split 1" init_df
+      [ "y1"; "y2"; "y3" ] "x1" 0.5 train_test_split_1;
+    train_test_split_test "train test split 2" init_df
+      [ "y1"; "y2"; "y3" ] "x1" 0.2 train_test_split_2;
+    cross_val_split_test "cross val split test 1" init_df
+      [ "y1"; "y2"; "y3" ] "x1" 0.1 0.1 cross_val_split_1;
+    cross_val_split_test "cross val split test 2" init_df
+      [ "y1"; "y2"; "y3" ] "x1" 0.2 0.2 cross_val_split_2;
   ]
 
 let suite =
-  "test suite for project" >::: List.flatten [ matrix_tests; statistics_tests ]
+  "test suite for project"
+  >::: List.flatten [ matrix_tests; statistics_tests ]
 
 let _ = run_test_tt_main suite
