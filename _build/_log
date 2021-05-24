@@ -1,0 +1,94 @@
+### Starting build.
+# Target: main.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:main.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules main.mli > main.mli.depends
+# Target: main.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:main.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o main.cmi main.mli
+# Target: main.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules main.ml > main.ml.depends
+# Target: dataframe.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:dataframe.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules dataframe.mli > dataframe.mli.depends
+# Target: decision_tree.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:decision_tree.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules decision_tree.mli > decision_tree.mli.depends
+# Target: matrix.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:matrix.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules matrix.mli > matrix.mli.depends
+# Target: matrix.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:matrix.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o matrix.cmi matrix.mli
+# Target: knn.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:knn.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules knn.mli > knn.mli.depends
+# Target: logistic_regression.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:logistic_regression.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules logistic_regression.mli > logistic_regression.mli.depends
+# Target: naive_bayes.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:naive_bayes.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules naive_bayes.mli > naive_bayes.mli.depends
+# Target: polynomial_regression.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:polynomial_regression.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules polynomial_regression.mli > polynomial_regression.mli.depends
+# Target: dataframe.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:dataframe.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o dataframe.cmi dataframe.mli
+# Target: decision_tree.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:decision_tree.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o decision_tree.cmi decision_tree.mli
+# Target: knn.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:knn.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o knn.cmi knn.mli
+# Target: logistic_regression.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:logistic_regression.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o logistic_regression.cmi logistic_regression.mli
+# Target: naive_bayes.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:naive_bayes.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o naive_bayes.cmi naive_bayes.mli
+# Target: polynomial_regression.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:polynomial_regression.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o polynomial_regression.cmi polynomial_regression.mli
+# Target: main.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o main.cmo main.ml
+# Target: dataframe.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:dataframe.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules dataframe.ml > dataframe.ml.depends
+# Target: decision_tree.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:decision_tree.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules decision_tree.ml > decision_tree.ml.depends
+# Target: statistics.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:statistics.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules statistics.mli > statistics.mli.depends
+# Target: utils.mli.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:mli, file:utils.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules utils.mli > utils.mli.depends
+# Target: statistics.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:statistics.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o statistics.cmi statistics.mli
+# Target: utils.cmi, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:mli, file:utils.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o utils.cmi utils.mli
+# Target: knn.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:knn.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules knn.ml > knn.ml.depends
+# Target: logistic_regression.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:logistic_regression.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules logistic_regression.ml > logistic_regression.ml.depends
+# Target: matrix.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:matrix.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules matrix.ml > matrix.ml.depends
+# Target: naive_bayes.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:naive_bayes.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules naive_bayes.ml > naive_bayes.ml.depends
+# Target: polynomial_regression.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:polynomial_regression.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules polynomial_regression.ml > polynomial_regression.ml.depends
+# Target: dataframe.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:dataframe.cmo, file:dataframe.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o dataframe.cmo dataframe.ml
+# Target: decision_tree.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:decision_tree.cmo, file:decision_tree.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o decision_tree.cmo decision_tree.ml
+# Target: knn.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:knn.cmo, file:knn.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o knn.cmo knn.ml
+# Target: logistic_regression.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:logistic_regression.cmo, file:logistic_regression.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o logistic_regression.cmo logistic_regression.ml
++ ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o logistic_regression.cmo logistic_regression.ml
+File "logistic_regression.ml", line 30, characters 6-13:
+30 |   let weights = fit x_train y_train alpha n in
+           ^^^^^^^
+Warning 26: unused variable weights.
+# Target: matrix.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:matrix.cmo, file:matrix.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o matrix.cmo matrix.ml
+# Target: naive_bayes.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:naive_bayes.cmo, file:naive_bayes.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o naive_bayes.cmo naive_bayes.ml
+# Target: polynomial_regression.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:polynomial_regression.cmo, file:polynomial_regression.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o polynomial_regression.cmo polynomial_regression.ml
++ ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o polynomial_regression.cmo polynomial_regression.ml
+File "polynomial_regression.ml", line 31, characters 6-13:
+31 |   let weights = fit x_train y_train n in
+           ^^^^^^^
+Warning 26: unused variable weights.
+# Target: statistics.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:statistics.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules statistics.ml > statistics.ml.depends
+# Target: utils.ml.depends, tags: { package(ANSITerminal), package(csv), package(ounit2), debug, extension:ml, file:utils.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package csv -package ANSITerminal -modules utils.ml > utils.ml.depends
+# Target: statistics.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:statistics.cmo, file:statistics.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o statistics.cmo statistics.ml
+# Target: utils.cmo, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:utils.cmo, file:utils.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package csv -package ANSITerminal -o utils.cmo utils.ml
+# Target: main.byte, tags: { package(ANSITerminal), package(csv), package(ounit2), byte, debug, dont_link_with, extension:byte, file:main.byte, link, ocaml, program, quiet, traverse }
+ocamlfind ocamlc -linkpkg -g -package ounit2 -package csv -package ANSITerminal dataframe.cmo matrix.cmo statistics.cmo utils.cmo decision_tree.cmo knn.cmo logistic_regression.cmo naive_bayes.cmo polynomial_regression.cmo main.cmo -o main.byte
+# Compilation successful.
