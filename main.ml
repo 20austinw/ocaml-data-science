@@ -32,9 +32,7 @@ let print_model_choice () =
   print_blue "\n2. Polynomial Regression";
   print_blue "\n3. K Nearest Neighbors";
   print_blue "\n4. K Means";
-  print_blue "\n5. Naive Bayes";
-  print_blue "\n6. Perceptron";
-  print_blue "\n7. Decision Tree"
+  print_blue "\n5. Perceptron"
 
 (* Call the relevant fit and predict functions in branches here, need to
    make them consistent across all algorithms first. *)
@@ -47,7 +45,7 @@ let print_model_choice () =
   | "quit" ->
       print_magenta farewell_msg;
       exit 0
-  | "1" | "2" | "3" | "4" | "5" | "6" | "7" ->
+  | "1" | "2" | "3" | "4" | "5" ->
       execute_model x_train x_test y_train y_test user_input
   | _ ->
       print_red command_error_msg;
@@ -71,13 +69,7 @@ and execute_model x_train x_test y_train y_test user_input =
           x_test_mat y_test_mat 2
     | "3" -> Knn.fit_and_predict x_train y_train x_test y_test
     | "4" -> failwith "unimplemented"
-    | "5" ->
-        Naive_bayes.fit_and_predict x_train_mat x_test_mat y_train
-          y_test
-    | "6" -> failwith "unimplemented"
-    | "7" ->
-        Decision_tree.fit_and_predict x_train_mat x_test_mat y_train
-          y_test
+    | "5" -> failwith "unimplemented"
     | _ -> failwith "impossible branch"
   in
   print_endline ("Accuracy: " ^ string_of_float acc);
