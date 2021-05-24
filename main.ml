@@ -109,7 +109,7 @@ let rec handle_select file input_func =
   print_string
     "\n\
       Enter the columns you want to select, one after another, \ 
-      separated by a single space space: \n";
+      separated by a single space: \n";
   let input_string = read_line () in
   match input_string with
   | "quit" ->

@@ -20,7 +20,7 @@ ui:
 	$(OCAMLBUILD) -tag 'debug' $(MAIN) && OCAMLRUNPARAM=b ./$(MAIN)
 
 zip: 
-	zip data-science.zip *.ml* *.json *.sh _tags *.ipynb .merlin .ocamlformat .ocamlinit LICENSE Makefile 
+	zip data-science.zip *.ml* *.json *.csv *.sh _tags *.ipynb .merlin .ocamlformat .ocamlinit LICENSE Makefile 
 
 docs: docs-public docs-private
 	
