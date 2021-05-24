@@ -72,9 +72,7 @@ and execute_model x_train x_test y_train y_test user_input =
 
 let rec split_file file =
   print_string
-    "\n\
-      Enter the feature columns, one after another, separated by a \
-      space: \n";
+    "\nEnter the feature column\n";
   let input_string = read_line () in
   let cols = String.split_on_char ' ' input_string in
   print_string "\nEnter the target column: \n";
