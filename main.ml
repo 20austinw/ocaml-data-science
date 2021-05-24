@@ -26,17 +26,11 @@ let print_init_instr () =
 let print_model_choice () =
   print_string
     "\n\
-     Choose a machine learning algorithm: (Eg. If you want logistic \
-     regression, enter 1) ";
-  print_blue "\n1. Logistic Regression";
-  print_blue "\n2. Polynomial Regression";
-  print_blue "\n3. K Nearest Neighbors";
-  print_blue "\n4. K Means";
-  print_blue "\n5. Perceptron"
+     Choose a learning method: \n";
+  print_blue "\n1. Supervised Learning";
+  print_blue "\n2. Unsupervised Learning"
 
-(* Call the relevant fit and predict functions in branches here, need to
-   make them consistent across all algorithms first. *)
-  let rec choose_model x_train x_test y_train y_test =
+let rec choose_model x_train x_test y_train y_test =
   print_model_choice ();
   print_string "\n> ";
   let user_input = read_line () in
@@ -45,7 +39,7 @@ let print_model_choice () =
   | "quit" ->
       print_magenta farewell_msg;
       exit 0
-  | "1" | "2" | "3" | "4" | "5" ->
+  | "1" | "2" ->
       execute_model x_train x_test y_train y_test user_input
   | _ ->
       print_red command_error_msg;
@@ -64,19 +58,12 @@ and execute_model x_train x_test y_train y_test user_input =
     | "1" ->
         Logistic_regression.fit_and_predict x_train_mat y_train_mat
           x_test_mat y_test_mat 0.1 1000
-    | "2" ->
-        Polynomial_regression.fit_and_predict x_train_mat y_train_mat
-          x_test_mat y_test_mat 2
-    | "3" -> Knn.fit_and_predict x_train y_train x_test y_test
-    | "4" -> failwith "unimplemented"
-    | "5" -> failwith "unimplemented"
+    | "2" -> Knn.fit_and_predict x_train y_train x_test y_test
     | _ -> failwith "impossible branch"
   in
   print_endline ("Accuracy: " ^ string_of_float acc);
   print_endline ("Mean-Squared Error: " ^ string_of_float mse);
-
   print_endline "y_pred, y_actual:";
-
   List.iter2
     (fun p a ->
       print_string (string_of_float p);

@@ -32,7 +32,20 @@
 </div>
 <h1>Module <a href="type_Perceptron.html">Perceptron</a></h1>
 
-<pre><span id="MODULEPerceptron"><span class="keyword">module</span> Perceptron</span>: <code class="code">sig</code> <a href="Perceptron.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<pre><span id="MODULEPerceptron"><span class="keyword">module</span> Perceptron</span>: <code class="code">sig</code> <a href="Perceptron.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>Perceptron algorithm</p>
+</div>
+</div>
+<hr width="100%">
 
 <pre><span id="VALw"><span class="keyword">val</span> w</span> : <code class="type"><a href="Matrix.html#TYPEt">Matrix.t</a> Stdlib.ref</code></pre>
-<pre><span id="VALtrain"><span class="keyword">val</span> train</span> : <code class="type"><a href="Matrix.html#TYPEt">Matrix.t</a> -> float -> <a href="Matrix.html#TYPEt">Matrix.t</a> -> <a href="Matrix.html#TYPEt">Matrix.t</a></code></pre></body></html>
+<pre><span id="VALtrain"><span class="keyword">val</span> train</span> : <code class="type"><a href="Matrix.html#TYPEt">Matrix.t</a> -> float -> <a href="Matrix.html#TYPEt">Matrix.t</a> -> int -> <a href="Matrix.html#TYPEt">Matrix.t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">train mat alpha actual n</code> takes in the concatenated columns of x and
+   y as mat, the learning rate as alpha, the tags of the features as
+   actual (e.g. 0 or 1), and the number of iterations as n. Function
+   returns the weights as output.</p>
+</div>
+</div>
+</body></html>
