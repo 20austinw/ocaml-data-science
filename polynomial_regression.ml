@@ -22,9 +22,7 @@ let predict x =
     if r = n then acc
     else make (r + 1) (concat acc (elem_pow x (float_of_int r)))
   in
-  let x' =
-    make 0 (List.init (x |> dim |> fst) (fun x -> []) |> construct)
-  in
+  let x' = make 0 (List.init (x |> dim |> fst) (fun x -> []) |> construct) in
   mult x' !w
 
 let fit_and_predict x_train y_train x_test y_test n =

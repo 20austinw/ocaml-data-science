@@ -1,3 +1,41 @@
+(* Test plan:
+
+   We used a combination of black box and manual testing to ensure the
+   correctness of our project. The dataframe, matrix and statistics
+   modules were extensively tested using OUnit black box testing. Since
+   the functions in these modules are either computing specific values
+   or changing a data structure in a specific way, it makes sense to
+   test if those operations are carried out according to the
+   specifications of the respective function. We made the judgement that
+   glass-box testing would be an unnecessary amount of work since
+   testing for edge cases and normal inputs using black box testing is
+   already fairly extensive, and was very effective at helping us catch
+   bugs. Glass box testing was also not a good choice as our algorithms
+   were dependent on the specifications of the functions in these
+   modules, not how those functions were implemented. As a result, we
+   found ourselves constantly changing the implementations of functions
+   without changing their specifications, which would be difficult to
+   keep track of in glass box testing but requires no change in our
+   strategy for black box testing.
+
+   Owing to the unusual nature of our project, we decided that it does
+   not really make sense to apply the same testing mechanism for the
+   machine learning modules since the performance of a machine learning
+   algorithm is dependent upon the data it receives. The fact that we
+   were expecting a 85% accuracy but only got 80%, for example, is not
+   an indication that the algorithm is wrong in any way. Therefore, the
+   algorithms were manually tested using jupyter demos to evaluate their
+   correctness and performance. The fact that they were able to
+   correctly perform the classification/regression tasks, coupled with
+   visual proof of how they performed on the datasets is evidence that
+   they are correct.
+
+   Finally, the command line interface was also tested manually by
+   simply having different people try different, weird inputs and
+   checking if the outputs were expected. User interfaces cannot really
+   be tested in any other way, and we believe we have performed enough
+   manual testing to claim that our interface is working flawlessly. *)
+
 open Matrix
 open Statistics
 open Dataframe
@@ -87,6 +125,7 @@ let matrix_tests =
       ];
     transpose_test "Transpose test on vector" [ [ 1.; 2.; 3.; 4. ] ]
       [ [ 1. ]; [ 2. ]; [ 3. ]; [ 4. ] ];
+    transpose_test "Traponse test on single entry" [ [ 1. ] ] [ [ 1. ] ];
     transpose_test "Transpose test on rectangular matrix"
       [ [ 1.; 2.; 3.; 4. ]; [ 2.; 3.; 4.; 5. ]; [ 3.; 4.; 5.; 6. ] ]
       [ [ 1.; 2.; 3. ]; [ 2.; 3.; 4. ]; [ 3.; 4.; 5. ]; [ 4.; 5.; 6. ] ];
@@ -98,6 +137,21 @@ let matrix_tests =
     invert_test "Matrix inverse test 1"
       [ [ 3.0; 0.0; 2.0 ]; [ 2.0; 0.0; -2.0 ]; [ 0.0; 1.0; 1.0 ] ]
       [ [ 0.2; 0.2; 0. ]; [ -0.2; 0.3; 1. ]; [ 0.2; -0.3; 0. ] ];
+    invert_test "Matrix inverse test on identity matrix"
+      [
+        [ 1.0; 0.0; 0.0; 0.0; 0.0 ];
+        [ 0.0; 1.0; 0.0; 0.0; 0.0 ];
+        [ 0.0; 0.0; 1.0; 0.0; 0.0 ];
+        [ 0.0; 0.0; 0.0; 1.0; 0.0 ];
+        [ 0.0; 0.0; 0.0; 0.0; 1.0 ];
+      ]
+      [
+        [ 1.0; 0.0; 0.0; 0.0; 0.0 ];
+        [ 0.0; 1.0; 0.0; 0.0; 0.0 ];
+        [ 0.0; 0.0; 1.0; 0.0; 0.0 ];
+        [ 0.0; 0.0; 0.0; 1.0; 0.0 ];
+        [ 0.0; 0.0; 0.0; 0.0; 1.0 ];
+      ];
     rref_test "Rref test 1"
       [ [ 1.; 5.; 9. ]; [ 4.; -6.; 8. ]; [ 7.; 9.; 3. ] ]
       [ [ 1.; 0.; 0. ]; [ 0.; 1.; 0. ]; [ 0.; 0.; 1. ] ];
@@ -115,6 +169,21 @@ let matrix_tests =
         [ 0.; 0.; 0. ];
         [ 0.; 0.; 0. ];
         [ 0.; 0.; 0. ];
+      ];
+    rref_test "Rref test on identity matrix"
+      [
+        [ 1.0; 0.0; 0.0; 0.0; 0.0 ];
+        [ 0.0; 1.0; 0.0; 0.0; 0.0 ];
+        [ 0.0; 0.0; 1.0; 0.0; 0.0 ];
+        [ 0.0; 0.0; 0.0; 1.0; 0.0 ];
+        [ 0.0; 0.0; 0.0; 0.0; 1.0 ];
+      ]
+      [
+        [ 1.0; 0.0; 0.0; 0.0; 0.0 ];
+        [ 0.0; 1.0; 0.0; 0.0; 0.0 ];
+        [ 0.0; 0.0; 1.0; 0.0; 0.0 ];
+        [ 0.0; 0.0; 0.0; 1.0; 0.0 ];
+        [ 0.0; 0.0; 0.0; 0.0; 1.0 ];
       ];
     det_test "2x2 matrix" [ [ 4.0; 6.0 ]; [ 3.0; 8.0 ] ] 14.0;
     det_test "3x3 matrix"
@@ -143,6 +212,8 @@ let matrix_tests =
       [ [ 1. ]; [ 2. ]; [ 3. ] ]
       [ [ 1.; 1. ]; [ 2.; 2. ]; [ 3.; 3. ] ]
       [ [ 1.; 1.; 1. ]; [ 2.; 2.; 2. ]; [ 3.; 3.; 3. ] ];
+    concat_test "Concat test on single entries" [ [ 1. ] ] [ [ 1. ] ]
+      [ [ 1.; 1. ] ];
     scale_test "Scale test"
       [ [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ] ]
       5.
@@ -152,6 +223,11 @@ let matrix_tests =
       [ [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ]; [ 1.; 1.; 1. ] ]
       ( +. )
       [ [ 2.; 2.; 2. ]; [ 2.; 2.; 2. ]; [ 2.; 2.; 2. ] ];
+    op_test "Operation test 2"
+      [ [ 1.; 2.; 3. ]; [ 1.; 2.; 3. ] ]
+      [ [ 1.; 2.; 3. ]; [ 1.; 2.; 3. ] ]
+      ( *. )
+      [ [ 1.; 4.; 9. ]; [ 1.; 4.; 9. ] ];
     dot "Dot test 1" [ [ 1.; 2.; 3.; 4. ] ] [ [ 1.; 2.; 3.; 4. ] ] 30.0;
     dot "Dot test 2"
       [ [ 1. ]; [ 2. ]; [ 3. ]; [ 4. ] ]
