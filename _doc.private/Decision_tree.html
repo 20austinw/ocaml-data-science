@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Naive_bayes.html">
+<link rel="next" href="Perceptron.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Utils" rel="Chapter" href="Utils.html">
+<link title="Statistics" rel="Chapter" href="Statistics.html">
+<link title="Matrix" rel="Chapter" href="Matrix.html">
+<link title="Dataframe" rel="Chapter" href="Dataframe.html">
+<link title="Polynomial_regression" rel="Chapter" href="Polynomial_regression.html">
+<link title="Logistic_regression" rel="Chapter" href="Logistic_regression.html">
+<link title="Knn" rel="Chapter" href="Knn.html">
+<link title="K_means" rel="Chapter" href="K_means.html">
+<link title="Naive_bayes" rel="Chapter" href="Naive_bayes.html">
+<link title="Decision_tree" rel="Chapter" href="Decision_tree.html">
+<link title="Perceptron" rel="Chapter" href="Perceptron.html">
+<link title="Authors" rel="Chapter" href="Authors.html"><title>Decision_tree</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Naive_bayes.html" title="Naive_bayes">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Perceptron.html" title="Perceptron">Next</a>
+</div>
+<h1>Module <a href="type_Decision_tree.html">Decision_tree</a></h1>
+
+<pre><span id="MODULEDecision_tree"><span class="keyword">module</span> Decision_tree</span>: <code class="code">sig</code> <a href="Decision_tree.html">..</a> <code class="code">end</code></pre><hr width="100%">
+
+<pre><code><span id="TYPEnode"><span class="keyword">type</span> <code class="type"></code>node</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnode.feature_i">feature_i</span>&nbsp;: <code class="type">int option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnode.threshold">threshold</span>&nbsp;: <code class="type">float option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnode.value">value</span>&nbsp;: <code class="type">float option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnode.true_branch">true_branch</span>&nbsp;: <code class="type"><a href="Decision_tree.html#TYPEnode">node</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnode.false_branch">false_branch</span>&nbsp;: <code class="type"><a href="Decision_tree.html#TYPEnode">node</a> option</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+
+
+<pre><code><span id="TYPEbest_criteria"><span class="keyword">type</span> <code class="type"></code>best_criteria</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbest_criteria.feature_i">feature_i</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbest_criteria.threshold">threshold</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+
+
+<pre><code><span id="TYPEbest_sets"><span class="keyword">type</span> <code class="type"></code>best_sets</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbest_sets.left_x">left_x</span>&nbsp;: <code class="type">float list list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbest_sets.left_y">left_y</span>&nbsp;: <code class="type">float list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbest_sets.right_x">right_x</span>&nbsp;: <code class="type">float list list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbest_sets.right_y">right_y</span>&nbsp;: <code class="type">float list</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+
+
+<pre><span id="VALmin_samples_split"><span class="keyword">val</span> min_samples_split</span> : <code class="type">int</code></pre>
+<pre><span id="VALmin_impurity"><span class="keyword">val</span> min_impurity</span> : <code class="type">float</code></pre>
+<pre><span id="VALmax_depth"><span class="keyword">val</span> max_depth</span> : <code class="type">int</code></pre>
+<pre><span id="VALentropy_for_label"><span class="keyword">val</span> entropy_for_label</span> : <code class="type">'a list -> 'a -> float</code></pre>
+<pre><span id="VALcalculate_entropy"><span class="keyword">val</span> calculate_entropy</span> : <code class="type">Stdlib.Float.t list -> float</code></pre>
+<pre><span id="VALdivide_on_feature"><span class="keyword">val</span> divide_on_feature</span> : <code class="type">'a list list -> int -> 'a -> 'a list list * 'a list list</code></pre>
+<pre><span id="VALnum_occurence_in_lst"><span class="keyword">val</span> num_occurence_in_lst</span> : <code class="type">'a -> 'a list -> int</code></pre>
+<pre><span id="VALmax_of_lst"><span class="keyword">val</span> max_of_lst</span> : <code class="type">float list -> float</code></pre>
+<pre><span id="VALfind_index_in_lst"><span class="keyword">val</span> find_index_in_lst</span> : <code class="type">'a -> 'a list -> int</code></pre>
+<pre><span id="VALleaf_value_calculate"><span class="keyword">val</span> leaf_value_calculate</span> : <code class="type">Stdlib.Float.t list -> Stdlib.Float.t</code></pre>
+<pre><span id="VALfv_before"><span class="keyword">val</span> fv_before</span> : <code class="type">'a list list -> int -> 'a list list</code></pre>
+<pre><span id="VALfv_after"><span class="keyword">val</span> fv_after</span> : <code class="type">'a list list -> int -> 'a list list</code></pre>
+<pre><span id="VALimpurity_calculate"><span class="keyword">val</span> impurity_calculate</span> : <code class="type">Stdlib.Float.t list -> Stdlib.Float.t list -> Stdlib.Float.t list -> float</code></pre>
+<pre><span id="VALto_single_col"><span class="keyword">val</span> to_single_col</span> : <code class="type">'a list list -> 'a list</code></pre>
+<pre><span id="VALfind_best_criteria_sets"><span class="keyword">val</span> find_best_criteria_sets</span> : <code class="type">(float * 'a * 'b) list -> float * 'a * 'b</code></pre>
+<pre><span id="VALbuild_tree"><span class="keyword">val</span> build_tree</span> : <code class="type">float list list -> Stdlib.Float.t list -> int -> <a href="Decision_tree.html#TYPEnode">node</a></code></pre>
+<pre><span id="VALfit"><span class="keyword">val</span> fit</span> : <code class="type"><a href="Matrix.html#TYPEt">Matrix.t</a> -> Stdlib.Float.t list -> <a href="Decision_tree.html#TYPEnode">node</a></code></pre>
+<pre><span id="VALpredict_value"><span class="keyword">val</span> predict_value</span> : <code class="type">float list -> <a href="Decision_tree.html#TYPEnode">node</a> -> float</code></pre>
+<pre><span id="VALpredict"><span class="keyword">val</span> predict</span> : <code class="type"><a href="Matrix.html#TYPEt">Matrix.t</a> -> Stdlib.Float.t list -> float list</code></pre>
+<pre><span id="VALfit_and_predict"><span class="keyword">val</span> fit_and_predict</span> : <code class="type"><a href="Matrix.html#TYPEt">Matrix.t</a> -><br>       <a href="Matrix.html#TYPEt">Matrix.t</a> -> Stdlib.Float.t list -> float list -> float * float * float list</code></pre></body></html>
