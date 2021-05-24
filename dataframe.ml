@@ -59,21 +59,21 @@ let rec find_index x lst =
 let indices_from_col_lst df col_lst =
   List.map (fun x -> find_index x df.header) col_lst
 
-let rename_cols_helper df indices updated_lst =
+let rename_cols_helper df index updated_name =
   let u_header =
     List.mapi
       (fun i x ->
-        if List.mem i indices then List.nth updated_lst i else x)
+        if i = index then updated_name else x)
       df.header
   in
   { df with header = u_header }
 
-let rename_cols df col_lst updated_lst =
-  let indices = List.map (fun x -> find_index x df.header) col_lst in
-  rename_cols_helper df indices updated_lst
+let rename_col df col_name updated_name =
+  let index = find_index col_name df.header in
+  rename_cols_helper df index updated_name
 
-let rename_cols_i df indices updated_lst =
-  rename_cols_helper df indices updated_lst
+let rename_col_i df index updated_name =
+  rename_cols_helper df index updated_name
 
 let select_cols_helper df indices =
   let u_header =

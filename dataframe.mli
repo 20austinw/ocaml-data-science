@@ -34,9 +34,17 @@ val pre_process : dataframe -> dataframe
     columns in the [cols_lst] in [df]*)
 val select_cols : dataframe -> string list -> dataframe
 
-(** [select_cols df indeces] returns a dataframe of index [indeces] from
+(** [select_cols df indices] returns a dataframe of index [indeces] from
     [df]*)
 val select_cols_i : dataframe -> int list -> dataframe
+
+(** [rename_col df col_name updated_name] returns a dataframe in which 
+    the [col_name] column of [df] is renamed to [updated_name] *)
+val rename_col : dataframe -> string -> string -> dataframe
+
+(** [rename_col_i df index updated_name] returns a dataframe in which 
+    the [index]th column of [df] is renamed to [updated_name] *)
+val rename_col_i : dataframe -> int -> string -> dataframe
 
 (** [update df col f str] updates the values of column [col] in
     dataframe [df] that satisfy the function [f] to be the new value
