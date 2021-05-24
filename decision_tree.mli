@@ -1,3 +1,5 @@
+(** Decision tree algorithm *)
+
 (** [node] is the representation of the tree that is built in the 
     decision tree algorithm. *)
 type node = {
