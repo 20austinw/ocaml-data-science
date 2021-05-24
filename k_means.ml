@@ -1,4 +1,7 @@
-type point = { tag : int; pos : float * float }
+type point = { 
+  tag : int; 
+  pos : float * float 
+}
 
 let construct lst =
   let rec helper acc = function
@@ -58,7 +61,8 @@ let classify points n max_iter =
         centroids.(i) <-
           {
             (centroids.(i)) with
-            pos = (fst new_pos /. float_of_int m, snd new_pos /. float_of_int m);
+            pos = (fst new_pos 
+              /. float_of_int m, snd new_pos /. float_of_int m);
           }
     done
   done;
